@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const loginPage = () =>{
+const LoginPage = () =>{
    const [isLogin, setIsLogin] = useState(true);
 //to do: fix this 
   const toggleForm = () => {
@@ -49,4 +49,4 @@ const loginPage = () =>{
     )
 }
 
-export default loginPage
+export default LoginPage

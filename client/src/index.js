@@ -1,14 +1,17 @@
 import React, { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import App from "./components/App";
+import ErrorPage from "./components/navigation/ErrorPage";
+import LoginPage from "./components/public/LoginPage";
+
 import "tailwindcss/tailwind.css";
-import {BrowserRouter as Router} from 'react-router-dom'
+import { BrowserRouter } from "react-router-dom";
 
 const root = createRoot(document.getElementById("root"));
 root.render(
-  <Router>
-    <StrictMode>
+  <StrictMode>
+    <BrowserRouter>
       <App />
-    </StrictMode>
-  </Router>
+    </BrowserRouter>
+  </StrictMode>
 );

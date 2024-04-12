@@ -1,12 +1,13 @@
-import React from 'react';
-import { Routes, Route, NavLink } from 'react-router-dom';
+import React from "react";
+import { Routes, Route, NavLink } from "react-router-dom";
 
-const navBarLinks () => {
-
-    return (
-        <div className='navBar-outer-wrapper'>
-            <NavLink to = '/login'> Login</NavLink>
-        </div>
-    )
-}
-export default navBarLinks
+const navBarLinks = () => {
+  return (
+    <div className="navBar-outer-wrapper">
+      <li>
+        <NavLink to="/signup"> Signup</NavLink>
+      </li>
+    </div>
+  );
+};
+export default navBarLinks;

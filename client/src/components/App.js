@@ -1,32 +1,29 @@
-import './../styles/LoginPage.css';
-import React, { useState } from 'react';
-import LoginPage from './public/LoginPage.js';
-import { Routes, Route } from 'react-router-dom';
-import navBarLinks from './navigation/navBarLinks.js';
+import "./../styles/LoginPage.css";
+import React, { useState } from "react";
+import LoginPage from "./public/LoginPage";
+import SignUpPage from "./public/SignUpPage";
+
+import ErrorPage from "./navigation/ErrorPage";
+
+import { Routes, Route } from "react-router-dom";
+import navBarLinks from "./navigation/navBarLinks";
 
 const App = () => {
   return (
     <div>
-     <navBarLinks /> 
+      <navBarLinks />
       <Routes>
-        {/* <Route path="/">
-          <Home />
-        </Route>
+        <Route path="/" element={<LoginPage />} />
+        <Route path="/about" element={<ErrorPage />} />
 
-        <Route path="/about">
-          <About />
-        </Route> */}
-
-        <Route path="/login" component={<LoginPage/>}/>
-         
-    
-        
+        <Route path="/signup" element={<SignUpPage />} />
       </Routes>
     </div>
   );
 };
 
-{/* function Home() {
+{
+  /* function Home() {
   return (
     <div>
       <h2>Home</h2>
@@ -40,6 +37,7 @@ function About() {
       <h2>About</h2>
     </div>
   );
-} */}
+} */
+}
 
 export default App;

@@ -25,6 +25,11 @@ module.exports = {
       },
     ],
   },
+  devServer: {
+    static: path.resolve(__dirname, "./public"),
+    hot: true,
+    historyApiFallback: { index: "./public", disableDotRule: true },
+  },
   plugins: [
     new HtmlWebpackPlugin({
       template: "./public/index.html",
