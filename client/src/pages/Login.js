@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const SignUpPage = () => {
+const Login = () => {
   const [isLogin, setIsLogin] = useState(true);
   //to do: fix this
   const toggleForm = () => {
@@ -8,7 +8,7 @@ const SignUpPage = () => {
   };
   return (
     <div>
-      <h1>Green Family / Plant world</h1>
+      <h1>Green Family</h1>
       <div className="main-container">
         <div className="card">
           {isLogin ? (
@@ -48,4 +48,4 @@ const SignUpPage = () => {
   );
 };
 
-export default SignUpPage;
+export default Login;

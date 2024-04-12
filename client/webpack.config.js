@@ -6,6 +6,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "bundle.js",
+    publicPath: "/",
   },
   module: {
     rules: [
@@ -26,9 +27,7 @@ module.exports = {
     ],
   },
   devServer: {
-    static: path.resolve(__dirname, "./public"),
-    hot: true,
-    historyApiFallback: { index: "./public", disableDotRule: true },
+    historyApiFallback: true,
   },
   plugins: [
     new HtmlWebpackPlugin({
