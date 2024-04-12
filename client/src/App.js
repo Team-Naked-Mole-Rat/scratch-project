@@ -10,7 +10,7 @@ const App = () => {
 
   return (
     <div>
-      <h1>Green Family / Plant world</h1>
+      <h1 className="title">Green Family / Plant world</h1>
       <div className="main-container">
         <div className="card">
           {isLogin ? (
