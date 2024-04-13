@@ -4,8 +4,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 module.exports = {
   entry: "./src/index.js",
   output: {
-    path: path.join(__dirname, "dist"),
-    publicPath: '/',
+    path: path.resolve(__dirname, "dist"),
     filename: "bundle.js",
     publicPath: "/",
   },
@@ -26,17 +25,17 @@ module.exports = {
         use: ["style-loader", "css-loader", "postcss-loader"],
       },
       {
-        test: /\.(png|jpe?g|gif)$/i,  // Regex to match image files
+        test: /\.(png|jpe?g|gif)$/i, // Regex to match image files
         use: [
           {
-            loader: 'file-loader',
+            loader: "file-loader",
             options: {
-              outputPath: 'images',  // Directory where images will be placed
-              name: '[name].[ext]'  // Maintain the original file name and extension
-            }
-          }
-        ]
-      }
+              outputPath: "images", // Directory where images will be placed
+              name: "[name].[ext]", // Maintain the original file name and extension
+            },
+          },
+        ],
+      },
     ],
   },
   devServer: {
