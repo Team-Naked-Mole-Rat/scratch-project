@@ -1,25 +1,21 @@
-import "./styles/Login.css";
-import React, { useState } from "react";
-import Home from "./pages/Home";
-import Login from "./pages/Login";
-import About from "./pages/About";
-import NotFound from "./pages/NotFound";
-import Navbar from "./components/navigation/Navbar";
+import './styles/css/public_App.css'
+import './styles/css/public_navbar.css'
 
-import { Routes, Route } from "react-router-dom";
+import React from 'react';
+
+import { RouterProvider } from 'react-router-dom';
+import { router } from './routes/router.js'; 
+import BackgroundImage from './components/pages/public/visual/BackgroundImage.js';
+
 
 const App = () => {
   return (
-    <div>
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/about" element={<About />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-    </div>
+    <>
+      <RouterProvider router={router} />
+      <BackgroundImage/>
+    </>
+
   );
-};
+}
 
 export default App;
