@@ -1,9 +1,23 @@
-import React from "react";
+import "./styles/Login.css";
+import React, { useState } from "react";
+import Home from "./pages/Home";
+import Login from "./pages/Login";
+import About from "./pages/About";
+import NotFound from "./pages/NotFound";
+import Navbar from "./components/navigation/Navbar";
+
+import { Routes, Route } from "react-router-dom";
 
 const App = () => {
   return (
     <div>
-      <h1 className="text-2xl text-green-500">Plant World</h1>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/about" element={<About />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
     </div>
   );
 };
