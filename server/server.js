@@ -23,8 +23,11 @@ app.post('/api', plantApiController.plantData, (req, res, next) => {
 });
 
 // Catch all
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "../client/public", "index.html"));
+// app.get("*", (req, res) => {
+//   res.sendFile(path.join(__dirname, "../client/public", "index.html"));
+// });
+app.get('*', (req, res) => {
+  res.sendFile('../client/dist/index.html', { root: __dirname });
 });
 
 // Listening on env port

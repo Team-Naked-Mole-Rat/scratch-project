@@ -1,6 +1,9 @@
 body {
+<<<<<<<< HEAD:client/src/styles/Login.css
   background: url('../../public/assets/images/background.jpg');
   background-size: cover;
+========
+>>>>>>>> origin/dev-client-RouterProvider:client/src/styles/css/public_App.css
   color: #083b13;
 }
 
