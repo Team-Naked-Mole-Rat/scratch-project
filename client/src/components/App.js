@@ -1,43 +1,21 @@
-import "./../styles/LoginPage.css";
-import React, { useState } from "react";
-import LoginPage from "./public/LoginPage";
-import SignUpPage from "./public/SignUpPage";
+import './../styles/css/public_App.css'
+import './../styles/css/public_navbar.css'
 
-import ErrorPage from "./navigation/ErrorPage";
+import React from 'react';
 
-import { Routes, Route } from "react-router-dom";
-import navBarLinks from "./navigation/navBarLinks";
+import { RouterProvider } from 'react-router-dom';
+import { router } from './../routes/router.js'; 
+import BackgroundImage from './pages/public/visual/BackgroundImage.js';
+
 
 const App = () => {
   return (
-    <div>
-      <navBarLinks />
-      <Routes>
-        <Route path="/" element={<LoginPage />} />
-        <Route path="/about" element={<ErrorPage />} />
+    <>
+      <RouterProvider router={router} />
+      <BackgroundImage/>
+    </>
 
-        <Route path="/signup" element={<SignUpPage />} />
-      </Routes>
-    </div>
   );
-};
-
-{
-  /* function Home() {
-  return (
-    <div>
-      <h2>Home</h2>
-    </div>
-  );
-}
-
-function About() {
-  return (
-    <div>
-      <h2>About</h2>
-    </div>
-  );
-} */
 }
 
 export default App;
