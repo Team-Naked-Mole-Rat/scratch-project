@@ -8,11 +8,11 @@ authRouter.post('/login', userController.verifyUser, (req, res, next) => {
   // console.log(req.body.token);
   res.status(200).json('we got here');
 });
-authRouter.post('/signup', (req, res, next) => {
-  console.log(req.body);
-  console.log(req.body.user);
-  console.log(req.body.token);
-  res.status(200).json('we got here too');
+authRouter.post('/signup', userController.signupUser, (req, res, next) => {
+  // console.log(req.body);
+  // console.log(req.body.user);
+  // console.log(req.body.token);
+  res.status(200).json('we got here');
 });
 
 module.exports = authRouter;
