@@ -1,16 +1,14 @@
-import './App.css';
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
-const App = () => {
+const Login = () => {
   const [isLogin, setIsLogin] = useState(true);
-
+  //to do: fix this
   const toggleForm = () => {
     setIsLogin(!isLogin);
   };
-
   return (
     <div>
-      <h1 className="title">Green Family / Plant world</h1>
+      <h1>Green Family</h1>
       <div className="main-container">
         <div className="card">
           {isLogin ? (
@@ -50,4 +48,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default Login;

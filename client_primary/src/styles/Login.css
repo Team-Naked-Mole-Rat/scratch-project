@@ -1,5 +1,5 @@
 body {
-  background: url('bg.jpg');
+  background: url('../../public/assets/images/background.jpg');
   background-size: cover;
   color: #083b13;
 }

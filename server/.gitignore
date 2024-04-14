@@ -1,2 +1,24 @@
+# DEV - Folders
+node_modules/
+dist/
+
+# DEV MISC - specific files
 .env
-node_modules
+package-lock.json
+
+# MAC - General
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# MAC - Hidden Files Sstarting with Underscore
+._*
+
+# MISC - All
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
