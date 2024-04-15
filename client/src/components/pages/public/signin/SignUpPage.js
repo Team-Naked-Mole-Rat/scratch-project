@@ -26,11 +26,12 @@ const SignUpPage = ({toggleForm}) => {
             className="form-label"
             htmlFor="new-username"
           >
-            Username
+            Username:
           </label>
 
           <input
             required
+            autoComplete="username"
             className="form-input"
             placeholder="New Account Username"
             type="text" 
@@ -45,11 +46,12 @@ const SignUpPage = ({toggleForm}) => {
             htmlFor="new-password"
             className="form-label"
           >
-            Password
+            Password:
           </label>
 
           <input 
             required
+            autoComplete="new-password"
             className="form-input"
             placeholder="New Account Password"
             type="password" 
@@ -60,6 +62,7 @@ const SignUpPage = ({toggleForm}) => {
 
           <input 
             required
+            autoComplete="new-password"
             className="form-input"
             placeholder="Confirm New Password"
             type="password" 

@@ -12,6 +12,7 @@ const LoginPage = ({toggleForm}) =>{
   }
 
     return (
+
       <form className = "form" onSubmit={handleSubmit}>
         <h2>Login</h2>
 
@@ -25,6 +26,7 @@ const LoginPage = ({toggleForm}) =>{
 
           <input 
             required
+            autoComplete="username"
             className="form-input"
             placeholder="Account Username"
             type="text" 
@@ -44,6 +46,7 @@ const LoginPage = ({toggleForm}) =>{
 
           <input 
             required
+            autoComplete="current-password"
             className="form-input"
             placeholder="Account Password"
             type="password" 
@@ -73,6 +76,7 @@ const LoginPage = ({toggleForm}) =>{
         </div>
 
       </form>
+
     )
 }
 

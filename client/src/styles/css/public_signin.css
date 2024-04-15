@@ -17,10 +17,10 @@ h2 {
   align-items: center;
 }
 
-.card {
+.form {
   width: 300px;
   border-radius: 10px;
-  box-shadow: 0 4px 15px #083b13;
+  /* box-shadow: 0 4px 15px #083b13; */
   padding: 20px;
 }
 
@@ -43,7 +43,7 @@ input, button {
 }
 
 input {
-  border: 1px solid #ccc;
+  border: 1px solid #083b13da;
   border-radius: 5px;
   box-sizing: border-box;
   outline-color: #083b13da;
@@ -68,4 +68,13 @@ input[type="text"]:focus, input[type="password"]:focus {
 
 input[type="text"], input[type="password"] {
   outline-color: #083b13;
+}
+
+
+input[type="text"]:hover::placeholder, input[type="password"]:hover::placeholder {
+  color: white;  /* Change color to red on hover */
+}
+
+input[type="text"]:hover::placeholder, input[type="password"]:focus::placeholder {
+  color: white;  /* Change color to green when the input is focused */
 }
