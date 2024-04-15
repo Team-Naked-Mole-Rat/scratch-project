@@ -5,7 +5,7 @@ import { NavLink, Outlet  } from 'react-router-dom';
 function NavBar() {
   return (
     <div>
-      <h1>Application Root</h1>
+      {/* <h1>Application Root</h1> */}
       <div className="navBar-outer-wrapper">
       <nav>
         <li>

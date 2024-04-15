@@ -9,11 +9,6 @@ const PORT = process.env.PORT || 3000;
 const app = express();
 
 
-mongoose.connect('mongodb://localhost:27017/mydatabase', { useNewUrlParser: true, useUnifiedTopology: true });
-mongoose.connection.once('open', () => {
-  console.log('Connected to Database');
-});
-
 
 app.use(express.json());
 // app.use(cors());
