@@ -35,6 +35,14 @@ function NavBar() {
         </li>
         <li>
           <NavLink 
+            to="signin2"
+            className={({ isActive }) => isActive ? 'nav-link nav-link-active' : 'nav-link'}
+          > 
+            Signin2
+          </NavLink>
+        </li>
+        <li>
+          <NavLink 
             to="error"
             className={({ isActive }) => isActive ? 'nav-link nav-link-active' : 'nav-link'}
           > 
