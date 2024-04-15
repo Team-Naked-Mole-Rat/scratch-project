@@ -16,7 +16,10 @@
   overflow-x: hidden;  
 
 }
-
+.form-group {
+  /* margin-bottom: 15px; */
+  /* padding: 20px; */
+}
 .nav-link {
   color: #083b13; 
   text-decoration: none; 

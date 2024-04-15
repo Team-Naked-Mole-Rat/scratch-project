@@ -17,6 +17,13 @@ h2 {
   align-items: center;
 }
 
+.card {
+  /* width: 300px; */
+  border-radius: 10px;
+  box-shadow: 0 4px 15px #083b13;
+  padding: 20px;
+}
+
 .form {
   width: 300px;
   border-radius: 10px;
@@ -26,6 +33,7 @@ h2 {
 
 .form, .form-group {
   margin-bottom: 15px;
+  
 }
 
 label, input, button {

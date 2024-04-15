@@ -10,10 +10,9 @@ import React from 'react';
 import { RouterProvider } from 'react-router-dom';
 import { router } from './routes/router.js'; 
 import BackgroundImage from './components/pages/public/visual/BackgroundImage.js';
-import { ModalProvider, useModal } from './components/pages/public/visual/ModalContext.js';
+import { ModalProvider } from './components/pages/public/visual/ModalContext.js';
 
 const App = () => {
-  const modal = useModal();
 
   return (
     <ModalProvider>
