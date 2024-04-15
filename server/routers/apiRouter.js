@@ -1,6 +1,6 @@
 const express = require('express');
 const apiRouter = express.Router();
-const plantApiController = require('./../api_controllers/plantApiController.js');
+const plantApiController = require('./../controllers/plantApiController.js');
 
 apiRouter.post(
   '/',

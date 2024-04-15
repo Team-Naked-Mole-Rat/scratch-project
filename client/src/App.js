@@ -1,5 +1,6 @@
 import './styles/css/public_App.css'
 import './styles/css/public_navbar.css'
+import './styles/css/public_navbar.css'
 
 import React from 'react';
 

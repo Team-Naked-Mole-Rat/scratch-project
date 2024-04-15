@@ -5,7 +5,7 @@ const fs = require('fs');
 const FormData = require('form-data');
 
 
-const doctorRat = require('../db/assesmentsModel.js');
+const doctorRat = require('../models/assesmentsModel.js');
 const plantApiController = {};
 
 const imagePath = 'p2.jpg';
