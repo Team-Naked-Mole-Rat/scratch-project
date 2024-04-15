@@ -35,7 +35,7 @@ const SignUpPage = ({toggleForm}) => {
             className="form-input"
             placeholder="New Account Username"
             type="text" 
-            id="username"
+            id="new-username"
             value={ username }
             onChange={ (e) => setUsername( e.target.value ) } 
           />
@@ -55,18 +55,22 @@ const SignUpPage = ({toggleForm}) => {
             className="form-input"
             placeholder="New Account Password"
             type="password" 
-            id="password" 
+            id="new-password" 
             value = { password }
             onChange={ (e) => setPassword( e.target.value ) } 
           />
 
+          <label 
+            htmlFor="new-password-confirm" 
+            className="form-label">
+          </label>
           <input 
             required
             autoComplete="new-password"
             className="form-input"
             placeholder="Confirm New Password"
             type="password" 
-            id="confirmpassword" 
+            id="new-password-confirm" 
             value = { confirmPassword }
             onChange={ (e) => setConfirmPassword( e.target.value ) } 
           />
