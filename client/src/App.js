@@ -1,53 +1,29 @@
-import './App.css';
-import React, { useState } from 'react';
+import './styles/css/public_navbar.css';
+import './styles/css/public_App.css';
+import './styles/css/public_signin.css';
+import './styles/css/public_modal.css'
+// import "tailwindcss/tailwind.css";
+// import "css/styles.css'"
+
+import React from 'react';
+
+import { RouterProvider } from 'react-router-dom';
+import { router } from './routes/router.js'; 
+import BackgroundImage from './components/pages/public/visual/BackgroundImage.js';
+import { ModalProvider } from './components/pages/public/visual/ModalContext.js';
 
 const App = () => {
-  const [isLogin, setIsLogin] = useState(true);
-
-  const toggleForm = () => {
-    setIsLogin(!isLogin);
-  };
 
   return (
-    <div>
-      <h1 className="title">Green Family / Plant world</h1>
-      <div className="main-container">
-        <div className="card">
-          {isLogin ? (
-            <form>
-              <h2>Login</h2>
-              <div className="form">
-                <label htmlFor="username">Username</label>
-                <input type="text" id="username" name="username" />
-                <label htmlFor="password">Password</label>
-                <input type="password" id="password" name="password" />
-              </div>
-              <button type="submit">Login</button>
-              <p>Don't have an account?</p>
-              <button type="button" onClick={toggleForm}>
-                Sign Up
-              </button>
-            </form>
-          ) : (
-            <form>
-              <h2>Sign Up</h2>
-              <div className="form">
-                <label htmlFor="new-username">Username</label>
-                <input type="text" id="new-username" name="new-username" />
-                <label htmlFor="new-password">Password</label>
-                <input type="password" id="new-password" name="new-password" />
-              </div>
-              <button type="submit">Sign Up</button>
-              <p>Already have an account? </p>
-              <button type="button" onClick={toggleForm}>
-                Login
-              </button>
-            </form>
-          )}
-        </div>
-      </div>
-    </div>
+    <ModalProvider>
+
+      <RouterProvider router={router} />
+
+      <BackgroundImage/>
+
+    </ModalProvider>
+
   );
-};
+}
 
 export default App;
