@@ -9,6 +9,7 @@ import ErrorPage from '../components/pages/error/ErrorPage.js';
 import AboutUsPage from '../components/pages/public/AboutUsPage.js';
 import ContactUsPage from '../components/pages/public/ContactUsPage.js';
 import SignInSelectPage from '../components/pages/public/SignInSelectPage.js';
+import SignInSelectPage2 from '../components/pages/public/SignInSelectPage2.js';
 
 export const router = createBrowserRouter([
   {
@@ -28,6 +29,10 @@ export const router = createBrowserRouter([
       {
         path: "signin",
         element: <SignInSelectPage />,
+      },
+      {
+        path: "signin2",
+        element: <SignInSelectPage2 />,
       },
     ],
   },
