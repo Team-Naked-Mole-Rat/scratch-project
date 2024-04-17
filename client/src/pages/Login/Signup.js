@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const SignUpPage = ({toggleForm}) => {
+const Signup = ({toggleForm}) => {
   const [ username, setUsername ] = useState('');
   const [ password, setPassword ] = useState('');
   const [ confirmPassword, setConfirmPassword ] = useState('');
@@ -99,4 +99,4 @@ const SignUpPage = ({toggleForm}) => {
   );
 };
 
-export default SignUpPage;
+export default Signup;

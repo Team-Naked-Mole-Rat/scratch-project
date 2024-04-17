@@ -1,29 +1,29 @@
 import React, { useState } from "react";
-import { useModal } from './visual/ModalContext'; 
-import Modal from './visual/Modal.js'
-import LoginPage from './signin/LoginPage.js';
-import SignupPage from './signin/SignUpPage.js';
+import { useModal } from "../../components/visual/ModalContext";
+import Modal from "../../components/visual/Modal.js";
+import LoginPage from "../Login/Login.js";
+import SignupPage from "../Login/Signup.js";
 
-export default function SignInSelectPage () {
-  const [ isLogin, setIsLogin ] = useState(true);
+export default function SignInSelectPage() {
+  const [isLogin, setIsLogin] = useState(true);
   const { showModal, hideModal, modalContent, isOpen } = useModal();
 
   const toggleForm = () => {
     setIsLogin(!isLogin);
   };
 
-  const handleOpenModal = () => { 
+  const handleOpenModal = () => {
     const content = isLogin ? (
-      <LoginPage toggleForm ={toggleForm}/>
+      <LoginPage toggleForm={toggleForm} />
     ) : (
-      <SignupPage toggleForm ={toggleForm}/>
+      <SignupPage toggleForm={toggleForm} />
     );
     showModal(content);
-  }
+  };
 
   return (
-    <div className = "main-content">
-      <h1>Green Family / Plant world</h1>
+    <div className="main-content">
+      <h1>Green Family</h1>
 
       <div className="main-container">
         <div className="close-button-container">
@@ -32,11 +32,10 @@ export default function SignInSelectPage () {
 
         {isOpen && (
           <Modal isOpen={isOpen} onClose={hideModal}>
-            {modalContent}            
+            {modalContent}
           </Modal>
         )}
-
       </div>
     </div>
   );
-};
+}
