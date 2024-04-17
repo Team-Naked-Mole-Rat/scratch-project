@@ -8,7 +8,7 @@ import Error from "../pages/NotFound/Error.js";
 
 import About from "../pages/About/About.js";
 import Contact from "../pages/Contact/Contact.js";
-import SignInSelectPage from "../pages/LoginModal/SignInSelectPage.js";
+
 import Register from "../pages/Login/Register.js";
 
 import Plants from "../pages/Plants/Plants.js";
@@ -28,10 +28,10 @@ export const router = createBrowserRouter([
         path: "contact",
         element: <Contact />,
       },
-      {
-        path: "signin",
-        element: <SignInSelectPage />,
-      },
+      // {
+      //   path: "signin",
+      //   element: <RegisterModal />,
+      // },
       {
         path: "register",
         element: <Register />,
