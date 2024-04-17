@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-export default function NotFoundPage() {
+export default function NotFound() {
   const navigate = useNavigate();
   const [countdown, setCountdown] = useState(5);
 
