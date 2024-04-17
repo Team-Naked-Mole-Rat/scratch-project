@@ -13,8 +13,8 @@ export default function Register() {
     <div className="main-content">
       <h1>Green Family</h1>
 
-      <div className="main-container">
-        <div className="card">
+      <div className="register main-container">
+        <div className="register card">
           {isLogin ? (
             <Login toggleForm={toggleForm} />
           ) : (
