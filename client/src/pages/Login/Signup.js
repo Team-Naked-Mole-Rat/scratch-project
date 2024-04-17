@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useSignupMutation } from "../../features/api/registerApiSlice";
-import { setCredentials } from "../../features/auth/authSlice";
+import { useSignupMutation } from "../../features/api/registerApiSlice.js";
+import { setCredentials } from "../../features/auth/authSlice.js";
 import { useNavigate } from "react-router-dom";
 
 const Signup = ({ toggleForm }) => {
@@ -40,18 +40,18 @@ const Signup = ({ toggleForm }) => {
   };
 
   return (
-    <form className="form" onSubmit={handleSubmit}>
-      <h2>Sign Up</h2>
+    <form className="register form" onSubmit={handleSubmit}>
+      <h2 className="register register-header">Sign Up</h2>
 
-      <div className="form-group">
-        <label className="form-label" htmlFor="new-username">
+      <div className="register form-group ">
+        <label className="register form-label" htmlFor="new-username">
           Username:
         </label>
 
         <input
           required
           autoComplete="username"
-          className="form-input"
+          className="register form-input"
           placeholder="New Account Username"
           type="text"
           id="new-username"
@@ -60,15 +60,15 @@ const Signup = ({ toggleForm }) => {
         />
       </div>
 
-      <div className="form-group">
-        <label htmlFor="new-password" className="form-label">
+      <div className="register form-group">
+        <label htmlFor="new-password" className="register form-label">
           Password:
         </label>
 
         <input
           required
           autoComplete="new-password"
-          className="form-input"
+          className="register form-input"
           placeholder="New Account Password"
           type="password"
           id="new-password"
@@ -80,7 +80,7 @@ const Signup = ({ toggleForm }) => {
         <input
           required
           autoComplete="new-password"
-          className="form-input"
+          className="register form-input"
           placeholder="Confirm New Password"
           type="password"
           id="new-password-confirm"
@@ -89,15 +89,15 @@ const Signup = ({ toggleForm }) => {
         />
       </div>
 
-      <div className="form-group">
-        <button type="submit" className="form-button">
+      <div className="register form-group">
+        <button type="submit" className="register form-button">
           Sign Up
         </button>
       </div>
 
-      <div className="form-group">
+      <div className="register form-group">
         <p>Already have an account? </p>
-        <button type="button" onClick={toggleForm}>
+        <button className="register form-button" type="button" onClick={toggleForm}>
           Go to Login Page
         </button>
       </div>

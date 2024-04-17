@@ -1,8 +1,8 @@
-import React, { useState } from "react";
-import { useLoginMutation } from "../../features/api/registerApiSlice";
-import { setCredentials } from "../../features/auth/authSlice";
+import React, { useState, useEffect } from "react";
+import { useLoginMutation } from "../../features/api/registerApiSlice.js";
+import { setCredentials } from "../../features/auth/authSlice.js";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 const Login = ({ toggleForm }) => {
   const [username, setUsername] = useState("");
@@ -37,18 +37,18 @@ const Login = ({ toggleForm }) => {
   };
 
   return (
-    <form className="form" onSubmit={handleSubmit}>
-      <h2>Login</h2>
+    <form className="register form" onSubmit={handleSubmit}>
+      <h2 className="register register-header">Login</h2>
 
-      <div className="form-group">
-        <label className="form-label" htmlFor="username">
+      <div className="register form-group">
+        <label className="register form-label" htmlFor="username">
           Username:
         </label>
 
         <input
           required
           autoComplete="username"
-          className="form-input"
+          className="register form-input"
           placeholder="Account Username"
           type="text"
           id="username"
@@ -57,15 +57,15 @@ const Login = ({ toggleForm }) => {
         />
       </div>
 
-      <div className="form-group">
-        <label htmlFor="password" className="form-label">
+      <div className="register form-group">
+        <label htmlFor="password" className="register form-label">
           Password:
         </label>
 
         <input
           required
           autoComplete="current-password"
-          className="form-input"
+          className="register form-input"
           placeholder="Account Password"
           type="password"
           id="password"
@@ -74,15 +74,15 @@ const Login = ({ toggleForm }) => {
         />
       </div>
 
-      <div className="form-group">
-        <button type="submit" className="form-button">
+      <div className="register form-group">
+        <button  className="register form-button" type="submit">
           Login
         </button>
       </div>
 
-      <div className="form-group">
+      <div className="register form-group">
         <p>Don't have an account?</p>
-        <button type="button" onClick={toggleForm}>
+        <button className="register form-button" type="button" onClick={toggleForm}>
           Go to Signup Page
         </button>
       </div>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import PlantCard from "./PlantCard";
+import PlantCard from "./PlantCard.js";
 
 export default function Plants() {
   const [plants, setPlants] = useState([
@@ -30,8 +30,8 @@ export default function Plants() {
   //   }
   // }, []);
   return (
-    <div>
-      <h1 className="text-3xl font-bold text-center my-8">My Plants</h1>
+    <div className = "main-content">
+      <h1 className="text-3xl font-bold text-center my-8" >My Plants</h1>
       <div className="border-t border-green-600 my-4"></div>
       <div className="flex flex-wrap justify-center">
         {plants.map((plant, index) => (

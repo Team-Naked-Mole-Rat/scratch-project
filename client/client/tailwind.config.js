@@ -1,11 +1,5 @@
-/*
-
-Customized
-
-*/
-
 /** @type {import('tailwindcss').Config} */
-const config = {
+module.exports = {
   content: ["./src/**/*.{html,js}"],
   purge: ["./public/**/*.html", "./src/**/*.js", "./src/components/**/*.js"],
   mode: "jit",
@@ -14,5 +8,3 @@ const config = {
   },
   plugins: [],
 };
-
-export default config;

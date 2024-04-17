@@ -1,4 +1,4 @@
-import { apiSlice } from "./apiSlice";
+import { apiSlice } from "./apiSlice.js";
 const REGISTER_URL = "/auth";
 
 export const registerApiSlice = apiSlice.injectEndpoints({

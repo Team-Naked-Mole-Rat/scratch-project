@@ -1,0 +1,51 @@
+.navBar-outer-wrapper {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 200px;  
+  height: 100%;  
+  background-color: #f0f0f0;  
+  overflow-y: auto;  
+  z-index: 1000;
+  background-color: rgba(255, 255, 255, 0.5);  
+}
+
+.main-content {
+  margin-left: 200px; 
+  padding: 20px;  
+  overflow-x: hidden;  
+
+}
+
+.nav-link {
+  color: #083b13; 
+  text-decoration: none; 
+  transition: color 0.3s, border-radius 0.3s; 
+  border: 2px solid transparent; 
+  border-radius: 8px; 
+  padding: 5px 10px; 
+}
+
+.nav-link:hover {
+  color: #0a4716; 
+}
+
+.nav-link-active {
+  color: #0c5b1a; 
+  font-weight: bold; 
+  border: 2px solid #083b13; 
+}
+
+.nav-link-active:hover {
+  color: #0e6f1e;
+}
+
+
+li {
+  list-style-type: none; 
+  margin: 10px 20px; 
+  padding: 0; 
+}
+
+
+
