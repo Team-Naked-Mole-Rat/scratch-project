@@ -1,11 +1,36 @@
 import React, { useState } from "react";
+import { useLoginMutation } from "../../features/api/registerApiSlice";
+import { setCredentials } from "../../features/auth/authSlice";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
 const Login = ({ toggleForm }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const [login, { isLoading }] = useLoginMutation();
+
+  const { userInfo } = useSelector((state) => state.auth);
+
+  useEffect(() => {
+    if (userInfo) {
+      navigate("/");
+    }
+  }, [navigate, userInfo]);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const res = await login({ username, password }).unwrap();
+      dispatch(setCredentials({ ...res }));
+      navigate("/");
+    } catch (err) {
+      console.log("Error logging in");
+      console.error(err?.data?.message || err.error);
+    }
     // TODO:  submission logic:
 
     console.log("Login with:: ", { username, password });
