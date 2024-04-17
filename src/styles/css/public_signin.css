@@ -1,0 +1,98 @@
+.register-header.register  {
+  text-align: center;
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.register.main-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.register.card {
+  border-radius: 10px;
+  box-shadow: 0 4px 15px #083b13;
+  padding: 20px;
+}
+
+.register.form {
+  width: 300px;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.register.form, .register.form-group {
+  margin-bottom: 15px;
+}
+
+label.register.form-label, input.register.form-input, button.register.form-button {
+  display: block;
+  width: 100%;
+}
+
+label.register.form-label {
+  margin-bottom: 5px;
+}
+
+input.register.form-input, button.register.form-button {
+  padding: 10px;
+  margin: 5px 0;
+}
+
+button.register.form-button {
+  background-color: #083b13;
+  border-radius: 5px;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+button.register.form-button:hover {
+  background-color: #083b13da;
+}
+
+input[type="text"].register.form-input:focus, 
+input[type="password"].register.form-input:focus {
+  background-color: #40834f;
+  color: white;
+}
+
+input[type="text"].register.form-input, 
+input[type="password"].register.form-input {
+  border: 1px solid #083b13;
+  border-radius: 5px;
+  box-sizing: border-box;
+  outline-color: #083b13;
+  background-color: #8db195;
+
+}
+
+input[type="text"].register.form-input:hover, 
+input[type="password"].register.form-input:hover {
+  background-color: #8db195; 
+}
+
+/* input[type="text"].register.form-input::selection, 
+input[type="password"].register.form-input::selection {
+  background-color: #8db195; 
+  border: 10px solid #083b13;
+  outline-color: #083b13;
+} */
+
+input[type="text"].register.form-input:hover::placeholder, 
+input[type="password"].register.form-input:hover::placeholder {
+  color: white;
+}
+
+input[type="text"].register:not(:focus):not(:placeholder-shown),
+input[type="password"].register:not(:focus):not(:placeholder-shown) {
+  background-color: #8db195;
+  border: 1px solid #083b13;
+  color: white;
+}
+
+input[type="text"].register.form-input::placeholder, 
+input[type="password"].register.form-input::placeholder {
+  color: black;
+}
