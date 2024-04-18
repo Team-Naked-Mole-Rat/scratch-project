@@ -1,7 +1,16 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { NavLink, Outlet } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { openModal } from "./../../features/modals/modalsSlice.js"
+import RegisterModal from './../../pages/Login/RegisterModal.js';
 
 function NavBar() {
+  const dispatch = useDispatch();
+
+  const handleOpenModal = useCallback( () => {
+    dispatch(openModal({ modalId: 'loginSignupModal'}));
+  }, [dispatch]);
+
   return (
     <div>
       {/* <h1>Application Root</h1> */}
@@ -29,14 +38,13 @@ function NavBar() {
             </NavLink>
           </li>
           <li>
-            <NavLink
-              to="signin"
-              className={({ isActive }) =>
-                isActive ? "nav-link nav-link-active" : "nav-link"
-              }
+
+            <button
+              onClick={handleOpenModal}
+              className="nav-link"
             >
               Signin
-            </NavLink>
+            </button>
           </li>
           <li>
             <NavLink
@@ -70,6 +78,7 @@ function NavBar() {
           </li>
         </nav>
       </div>
+      <RegisterModal />
       <Outlet />
     </div>
   );
