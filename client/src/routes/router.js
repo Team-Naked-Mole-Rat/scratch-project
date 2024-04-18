@@ -1,38 +1,44 @@
-import * as React from 'react';
-import { createBrowserRouter } from 'react-router-dom';
+import * as React from "react";
+import { createBrowserRouter } from "react-router-dom";
 
-import NavBar from '../components/pages/public/navbar/NavBar.js';
+import NavBar from "../components/navbar/NavBar.js";
 
-import NotFoundPage from '../components/pages/error/NotFoundPage.js';
-import ErrorPage from '../components/pages/error/ErrorPage.js';
+import NotFound from "../pages/NotFound/NotFound.js";
+import Error from "../pages/NotFound/Error.js";
 
-import AboutUsPage from '../components/pages/public/AboutUsPage.js';
-import ContactUsPage from '../components/pages/public/ContactUsPage.js';
-import SignInSelectPage from '../components/pages/public/SignInSelectPage.js';
-import SignInSelectPage2 from '../components/pages/public/SignInSelectPage2.js';
+import About from "../pages/About/About.js";
+import Contact from "../pages/Contact/Contact.js";
+
+import Register from "../pages/Login/Register.js";
+
+import Plants from "../pages/Plants/Plants.js";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <NavBar />,
-    errorElement: <ErrorPage />,
+    errorElement: <Error />,
     children: [
-      { path: '*', element: <NotFoundPage /> },
+      { path: "*", element: <NotFound /> },
       {
         index: true,
-        element: <AboutUsPage />,
+        element: <About />,
       },
       {
         path: "contact",
-        element: <ContactUsPage />,
+        element: <Contact />,
+      },
+      // {
+      //   path: "signin",
+      //   element: <RegisterModal />,
+      // },
+      {
+        path: "register",
+        element: <Register />,
       },
       {
-        path: "signin",
-        element: <SignInSelectPage />,
-      },
-      {
-        path: "signin2",
-        element: <SignInSelectPage2 />,
+        path: "plants",
+        element: <Plants />,
       },
     ],
   },
