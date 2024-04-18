@@ -5,20 +5,22 @@ const userController = require('../controllers/userController');
 authRouter.post('/login', 
   userController.verifyUser, 
   (req, res, next) => {
-    // console.log(req.body);
-    // console.log(req.body.user);
-    // console.log(req.body.token);
-    res.status(200).json('we got here');
-  }
-);
-authRouter.post('/signup', 
-  userController.signupUser, 
-  (req, res, next) => {
-    // console.log(req.body);
-    // console.log(req.body.user);
-    // console.log(req.body.token);
+    //to user summary page?
     res.status(200).json('we got here');
   }
 );
 
+authRouter.post('/signup', 
+  userController.signupUser, 
+  (req, res, next) => {
+    //to user summary page?
+    res.status(200).json('new user signup complete');
+  }
+);
+
+authRouter.get('/logout', (req, res) => {
+  res.token='';
+  res.redirect('/');
+  }
+);
 module.exports = authRouter;

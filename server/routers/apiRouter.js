@@ -1,6 +1,7 @@
 const express = require('express');
 const apiRouter = express.Router();
 const plantApiController = require('./../controllers/plantApiController.js');
+const authJWT = require('../middleware/authJWT');
 
 apiRouter.post(
   '/',
@@ -10,5 +11,6 @@ apiRouter.post(
     res.status(200).json({});
   }
 );
+
 
 module.exports = apiRouter;

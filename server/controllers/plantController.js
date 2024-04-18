@@ -9,7 +9,7 @@ plantController.createPlant = async(req, res, next) => {
      const text = `INSERT INTO plants (plantname, watering_instruction,fertilize_instruction,sunlight, image)
        VALUES ($1,$2,$3,$4,$5)
        RETURNING *`;
-     const params = [lantname, wateringInstruction,fertilizeInstruction,sunlight, image];
+     const params = [plantname, wateringInstruction,fertilizeInstruction,sunlight, image];
      const result = await db.query(text,params);
      console.log(result)
      if(result.rowCount!==1){
