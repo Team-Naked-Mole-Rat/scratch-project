@@ -1,27 +1,27 @@
-import React, { useCallback } from "react";
-import { NavLink, Outlet } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { openModal } from "./../../features/modals/modalsSlice.js"
+import React, { useCallback } from 'react';
+import { NavLink, Outlet } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { openModal } from './../../features/modals/modalsSlice.js';
 import RegisterModal from './../../pages/Login/RegisterModal.js';
 
 function NavBar() {
   const dispatch = useDispatch();
 
-  const handleOpenModal = useCallback( () => {
-    dispatch(openModal({ modalId: 'loginSignupModal'}));
+  const handleOpenModal = useCallback(() => {
+    dispatch(openModal({ modalId: 'loginSignupModal' }));
   }, [dispatch]);
 
   return (
     <div>
       {/* <h1>Application Root</h1> */}
       <div className="navBar-outer-wrapper">
-        <nav>
+        <nav className="navBarContent">
           <li>
             <NavLink
               to="/"
               end
               className={({ isActive }) =>
-                isActive ? "nav-link nav-link-active" : "nav-link"
+                isActive ? 'nav-link nav-link-active' : 'nav-link'
               }
             >
               About
@@ -31,36 +31,32 @@ function NavBar() {
             <NavLink
               to="contact"
               className={({ isActive }) =>
-                isActive ? "nav-link nav-link-active" : "nav-link"
+                isActive ? 'nav-link nav-link-active' : 'nav-link'
               }
             >
               Contact
             </NavLink>
           </li>
           <li>
-
-            <button
-              onClick={handleOpenModal}
-              className="nav-link"
-            >
+            <button onClick={handleOpenModal} className="nav-link">
               Signin
             </button>
           </li>
-          <li>
+          {/* <li>
             <NavLink
               to="register"
               className={({ isActive }) =>
-                isActive ? "nav-link nav-link-active" : "nav-link"
+                isActive ? 'nav-link nav-link-active' : 'nav-link'
               }
             >
               Signin2
             </NavLink>
-          </li>
+          </li> */}
           <li>
             <NavLink
               to="plants"
               className={({ isActive }) =>
-                isActive ? "nav-link nav-link-active" : "nav-link"
+                isActive ? 'nav-link nav-link-active' : 'nav-link'
               }
             >
               My Plants
@@ -70,7 +66,7 @@ function NavBar() {
             <NavLink
               to="error"
               className={({ isActive }) =>
-                isActive ? "nav-link nav-link-active" : "nav-link"
+                isActive ? 'nav-link nav-link-active' : 'nav-link'
               }
             >
               Error Page
