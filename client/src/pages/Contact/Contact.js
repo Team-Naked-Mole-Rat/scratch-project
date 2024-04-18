@@ -1,9 +1,13 @@
-import React from 'react'
+import React from 'react';
+import AddPlantForm from './../Plants/AddPlantForm.js';
 
 const Contact = () => {
   return (
-    <div className = "main-content">Contact</div>
-  )
-}
+    <div>
+      <div className="main-content">Contact</div>
+      <AddPlantForm />
+    </div>
+  );
+};
 
-export default Contact
+export default Contact;
