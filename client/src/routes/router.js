@@ -13,6 +13,9 @@ import Register from "../pages/Login/Register.js";
 
 import Plants from "../pages/Plants/Plants.js";
 
+
+import ProtectedRoute from "./ProtectedRoute.js"
+
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -25,13 +28,12 @@ export const router = createBrowserRouter([
         element: <About />,
       },
       {
-        path: "contact",
-        element: <Contact />,
+        path: "what",
+        element: <ProtectedRoute allowedRoles ={['admin']} />,
+        children: [
+          { path: "contact", element: <Contact />}
+        ],
       },
-      // {
-      //   path: "signin",
-      //   element: <RegisterModal />,
-      // },
       {
         path: "register",
         element: <Register />,
