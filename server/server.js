@@ -5,10 +5,12 @@ const mongoose = require('mongoose')
 require('dotenv').config();
 const authRouter = require('./routers/authRouter.js');
 const apiRouter = require('./routers/apiRouter.js');
-const PORT = process.env.PORT || 7040;
+const PORT = process.env.PORT || 3000;
 const app = express();
 const authJWT = require('./middleware/authJWT');
 const userController = require('./controllers/userController');
+const userPlantController = require('./controllers/userPlantController');
+const userPlantRouter = require('./routers/userPlantRouter.js');
 
 app.use(express.json());
 // app.use(cors());
@@ -23,7 +25,13 @@ app.use('/auth', authRouter);
 
 app.use('/api', apiRouter);
 
-app.get('/summary', authJWT, userController.getUserPlants,(req, res) => {
+app.use('/userPlant', userPlantRouter);
+
+app.get('/summary', authJWT, userPlantController.getUserPlants,(req, res) => {
+  res.sendFile('../client/dist/index.html', { root: __dirname });
+});
+
+app.get('/summary', authJWT, userPlantController.getUserPlants,(req, res) => {
   res.sendFile('../client/dist/index.html', { root: __dirname });
 });
 
