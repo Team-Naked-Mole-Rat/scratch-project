@@ -33,13 +33,13 @@ export default {
         use: ["style-loader", "css-loader", "postcss-loader"],
       },
       {
-        test: /\.(png|jpe?g|gif)$/i, // Regex to match image files
+        test: /\.(png|jpe?g|gif)$/i, 
         use: [
           {
             loader: "file-loader",
             options: {
-              outputPath: "images", // Directory where images will be placed
-              name: "[name].[ext]", // Maintain the original file name and extension
+              outputPath: "images", 
+              name: "[name].[ext]", 
             },
           },
         ],
@@ -54,7 +54,6 @@ export default {
         throw new Error('webpack-dev-server is not defined');
       }
 
-      // Setting up proxy for '/api'
       devServer.app.use(
         '/api',
         createProxyMiddleware({
@@ -65,7 +64,6 @@ export default {
         })
       );
 
-      // Setting up proxy for '/auth'
       devServer.app.use(
         '/auth',
         createProxyMiddleware({
@@ -86,7 +84,7 @@ export default {
         })
       );
 
-      return middlewares; // Important to return the modified middlewares array
+      return middlewares;
     },
   },
   plugins: [
