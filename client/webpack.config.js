@@ -76,6 +76,16 @@ export default {
         })
       );
 
+      devServer.app.use(
+        '/userPlant',
+        createProxyMiddleware({
+          target: 'http://localhost:3000',
+          changeOrigin: true,
+          secure: false,
+          pathRewrite: { '^/userPlant': '' },
+        })
+      );
+
       return middlewares; // Important to return the modified middlewares array
     },
   },
