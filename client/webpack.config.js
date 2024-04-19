@@ -1,7 +1,7 @@
 import path from "path";
 import HtmlWebpackPlugin from "html-webpack-plugin";
-import { fileURLToPath } from 'url';
-import { createProxyMiddleware } from 'http-proxy-middleware';
+import { fileURLToPath } from "url";
+import { createProxyMiddleware } from "http-proxy-middleware";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -14,7 +14,7 @@ export default {
     publicPath: "/",
   },
   resolve: {
-    extensions: ['.js']
+    extensions: [".js"],
   },
   module: {
     rules: [
@@ -33,13 +33,13 @@ export default {
         use: ["style-loader", "css-loader", "postcss-loader"],
       },
       {
-        test: /\.(png|jpe?g|gif)$/i, 
+        test: /\.(png|jpe?g|gif)$/i,
         use: [
           {
             loader: "file-loader",
             options: {
-              outputPath: "images", 
-              name: "[name].[ext]", 
+              outputPath: "images",
+              name: "[name].[ext]",
             },
           },
         ],
@@ -56,19 +56,19 @@ export default {
       {
         context: ['/api'],
         changeOrigin: true,
-        secure: false, 
+        secure: false,
         target: `http://localhost:3000/`,
       },
       {
         context: ['/auth'],
         changeOrigin: true,
-        secure: false, 
+        secure: false,
         target: `http://localhost:3000/`,
       },
       {
         context: ['/userPlant'],
         changeOrigin: true,
-        secure: false, 
+        secure: false,
         target: `http://localhost:3000/`,
       },
     ],
