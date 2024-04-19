@@ -47,45 +47,31 @@ export default {
     ],
   },
   devServer: {
-    historyApiFallback: true,
-    port: 8000,
-    setupMiddlewares: (middlewares, devServer) => {
-      if (!devServer) {
-        throw new Error('webpack-dev-server is not defined');
-      }
-
-      devServer.app.use(
-        '/api',
-        createProxyMiddleware({
-          target: 'http://localhost:3030',
-          changeOrigin: true,
-          secure: false,
-          pathRewrite: { '^/api': '' },
-        })
-      );
-
-      devServer.app.use(
-        '/auth',
-        createProxyMiddleware({
-          target: 'http://localhost:3030',
-          changeOrigin: true,
-          secure: false,
-          pathRewrite: { '^/auth': '' },
-        })
-      );
-
-      devServer.app.use(
-        '/userPlant',
-        createProxyMiddleware({
-          target: 'http://localhost:3000',
-          changeOrigin: true,
-          secure: false,
-          pathRewrite: { '^/userPlant': '' },
-        })
-      );
-
-      return middlewares;
+    static: {
+      directory: path.resolve(__dirname, `dist`),
+      publicPath: `dist`
     },
+    historyApiFallback: true,
+    proxy: [
+      {
+        context: ['/api'],
+        changeOrigin: true,
+        secure: false, 
+        target: `http://localhost:3000/`,
+      },
+      {
+        context: ['/auth'],
+        changeOrigin: true,
+        secure: false, 
+        target: `http://localhost:3000/`,
+      },
+      {
+        context: ['/userPlant'],
+        changeOrigin: true,
+        secure: false, 
+        target: `http://localhost:3000/`,
+      },
+    ],
   },
   plugins: [
     new HtmlWebpackPlugin({
