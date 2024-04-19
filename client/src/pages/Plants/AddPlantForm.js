@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { FileUploader } from 'react-drag-drop-files';
+import './../../styles/css/plantForm.css';
 
 const fileTypes = ['JPG', 'PNG'];
 
@@ -43,37 +44,38 @@ export default function AddPlantForm() {
   };
   return (
     <div className="main-content">
-      <h1>Add A Plant </h1>
-      <form onSubmit={handleSubmit}>
-        <label> Plant Type:</label>
-        <input
-          type="text"
-          id="plantType"
-          name="plantType"
-          value={formData.plantType}
-          onChange={handleChange}
-        />
+      <div className="main-plant-content">
+        <form onSubmit={handleSubmit}>
+          <label> Plant Type:</label>
+          <input
+            type="text"
+            id="plantType"
+            name="plantType"
+            value={formData.plantType}
+            onChange={handleChange}
+          />
 
-        <br></br>
-        <label> Plant Location:</label>
-        <input
-          type="text"
-          id="plantLocation"
-          name="plantLocation"
-          value={formData.plantLocation}
-          onChange={handleChange}
-        />
-        <br></br>
-        <label>Plant Image:</label>
-        <FileUploader
-          types={fileTypes}
-          id="plantImage"
-          name="plantImage"
-          value={formData.plantImage}
-          handleChange={handleFileChange}
-        />
-        <button type="submit">Submit</button>
-      </form>
+          <br></br>
+          <label> Plant Location:</label>
+          <input
+            type="text"
+            id="plantLocation"
+            name="plantLocation"
+            value={formData.plantLocation}
+            onChange={handleChange}
+          />
+          <br></br>
+          <label>Plant Image:</label>
+          <FileUploader
+            types={fileTypes}
+            id="plantImage"
+            name="plantImage"
+            value={formData.plantImage}
+            handleChange={handleFileChange}
+          />
+          <button type="submit">Submit</button>
+        </form>
+      </div>
     </div>
   );
 }
