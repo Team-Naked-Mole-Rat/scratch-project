@@ -65,6 +65,12 @@ export default {
         secure: false, 
         target: `http://localhost:3000/`,
       },
+      {
+        context: ['/userPlant'],
+        changeOrigin: true,
+        secure: false, 
+        target: `http://localhost:3000/`,
+      },
     ],
   },
   plugins: [
