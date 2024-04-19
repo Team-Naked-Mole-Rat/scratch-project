@@ -1,42 +1,42 @@
-import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useSignupMutation } from '../../features/api/registerApiSlice.js';
-import { setCredentials } from '../../features/auth/authSlice.js';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useSignupMutation } from "../../features/api/registerApiSlice.js";
+import { setCredentials } from "../../features/auth/authSlice.js";
+import { useNavigate } from "react-router-dom";
 
 const Signup = ({ toggleForm }) => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const [signup, { isLoading }] = useSignupMutation();
 
-  const { userInfo } = useSelector(state => state.auth);
+  const { userInfo } = useSelector((state) => state.auth);
 
   useEffect(() => {
     if (userInfo) {
-      navigate('/');
+      navigate("/");
     }
   }, [navigate, userInfo]);
 
-  const handleSubmit = async e => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (password !== confirmPassword) {
       alert("Passwords don't match!");
       return;
     }
     try {
-      const res = await signup({ username, password }).unwrap();
+      const res = await signup({ user: { username, password } }).unwrap();
       dispatch(setCredentials({ ...res }));
     } catch (err) {
-      console.log('Error submitting');
+      console.log("Error submitting");
       console.error(err);
     }
 
-    console.log('Signup with:: ', { username, password });
+    console.log("Signup with:: ", { username, password });
   };
 
   return (
@@ -56,7 +56,7 @@ const Signup = ({ toggleForm }) => {
           type="text"
           id="new-username"
           value={username}
-          onChange={e => setUsername(e.target.value)}
+          onChange={(e) => setUsername(e.target.value)}
         />
       </div>
 
@@ -73,7 +73,7 @@ const Signup = ({ toggleForm }) => {
           type="password"
           id="new-password"
           value={password}
-          onChange={e => setPassword(e.target.value)}
+          onChange={(e) => setPassword(e.target.value)}
         />
 
         <label htmlFor="new-password-confirm" className="form-label"></label>
@@ -85,7 +85,7 @@ const Signup = ({ toggleForm }) => {
           type="password"
           id="new-password-confirm"
           value={confirmPassword}
-          onChange={e => setConfirmPassword(e.target.value)}
+          onChange={(e) => setConfirmPassword(e.target.value)}
         />
       </div>
 

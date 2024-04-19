@@ -24,9 +24,9 @@ const Login = ({ toggleForm }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await login({ username, password }).unwrap();
+      const res = await login({user: { username, password }}).unwrap();
       dispatch(setCredentials({ ...res }));
-      navigate("/");
+      navigate("/contact");
     } catch (err) {
       console.log("Error logging in");
       console.error(err?.data?.message || err.error);

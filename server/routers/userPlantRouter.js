@@ -1,36 +1,31 @@
-const express = require('express');
+const express = require("express");
 const userPlantRouter = express.Router();
-const userController = require('../controllers/userController');
-const userPlantController = require('../controllers/userPlantController');
+const userController = require("../controllers/userController");
+const userPlantController = require("../controllers/userPlantController");
 
-userPlantRouter.post('/addPlant', 
-  userPlantController.createUserplant,
+userPlantRouter.post("/addPlant", userPlantController.createUserplant);
+
+userPlantRouter.post(
+  "/updatePlant",
+  userController.verifyUser,
   (req, res, next) => {
     //to user summary page?
-    res.status(200).json('added plant to the user');
+    res.status(200).json("we got here");
   }
 );
 
-userPlantRouter.post('/updatePlant', 
-  userController.verifyUser, 
+userPlantRouter.delete(
+  "/deletePlant",
+  userController.verifyUser,
   (req, res, next) => {
     //to user summary page?
-    res.status(200).json('we got here');
+    res.status(200).json("we got here");
   }
 );
 
-userPlantRouter.delete('/deletePlant', 
-  userController.verifyUser, 
-  (req, res, next) => {
-    //to user summary page?
-    res.status(200).json('we got here');
-  }
-);
-
-userPlantRouter.get('/plantsSummary', (req, res) => {
-  res.token='';
-  res.redirect('/');
-  }
-);
+userPlantRouter.get("/plantsSummary", (req, res) => {
+  res.token = "";
+  res.redirect("/");
+});
 
 module.exports = userPlantRouter;
