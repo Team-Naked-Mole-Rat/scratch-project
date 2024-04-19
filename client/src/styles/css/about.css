@@ -1,0 +1,137 @@
+.homepage-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f9f5; /* light green background */
+  }
+  
+  /* Header styles */
+  .header {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  
+  .header h1 {
+    color: #4caf50; /* dark green text */
+    font-size: 2.5em;
+  }
+  
+  /* About App section styles */
+  .about-app {
+    margin-bottom: 40px;
+  }
+  
+  .about-app h2 {
+    color: #2e7d32; /* deeper green text */
+    font-size: 2em;
+    margin-bottom: 20px;
+  }
+  
+  .about-app p {
+    color: #333; /* dark text */
+    font-size: 1.1em;
+    line-height: 1.6;
+  }
+  
+  /* Diagnosis Features section styles */
+  .diagnosis-features {
+    margin-bottom: 40px;
+  }
+  
+  .diagnosis-features h2 {
+    color: #2e7d32;
+    font-size: 2em;
+    margin-bottom: 20px;
+  }
+  
+  .diagnosis-features ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .diagnosis-features li {
+    color: #444;
+    font-size: 1.1em;
+    margin-bottom: 10px;
+  }
+  
+  .diagnosis-features li::before {
+    content: '•';
+    color: #4caf50;
+    display: inline-block;
+    width: 1em;
+    margin-left: -1em;
+  }
+  
+  /* About Creators section styles */
+  .about-creators {
+    margin-bottom: 40px;
+  }
+  
+  .about-creators h2 {
+    color: #2e7d32;
+    font-size: 2em;
+    margin-bottom: 20px;
+  }
+  
+  .creator {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .creator-image {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-right: 20px;
+    border: 3px solid #4caf50; /* dark green border */
+  }
+  
+  .creator h3 {
+    color: #2e7d32;
+    font-size: 1.5em;
+    margin-bottom: 10px;
+  }
+  
+  .creator p {
+    color: #555;
+    font-size: 1em;
+    line-height: 1.4;
+  }
+
+  .marginAbout{
+    margin: 0 20px 0 20px;
+  }
+  
+  /* Footer styles */
+  .footer {
+    text-align: center;
+    margin-top: 50px;
+    padding-top: 20px;
+    border-top: 1px solid #ddd;
+    color: #555;
+    font-size: 0.9em;
+  }
+  
+  .footer p {
+    margin: 0;
+  }
+  
+  /* Responsive styles */
+  @media (max-width: 768px) {
+    .homepage-container {
+      padding: 10px;
+    }
+  
+    .creator {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+  
+    .creator-image {
+      margin-bottom: 10px;
+    }
+  }
