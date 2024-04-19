@@ -3,14 +3,14 @@ const mongoose = require('mongoose')
 const axios = require('axios');
 const fs = require('fs');
 const FormData = require('form-data');
-
+const parsePlantRawdata = require('../middleware/parsePlantRawData');
 
 const doctorRat = require('../models/assesmentsModel.js');
 const plantApiController = {};
 
-const imagePath = 'p2.jpg';
+const imagePath = 'sickplant.jpg';
 
-plantApiController.plantData = async (req, res, next) => {
+plantApiController.getPlantData = async (req, res, next) => {
   const data = new FormData();
   data.append('plant_img', fs.createReadStream(imagePath));
 
@@ -28,7 +28,11 @@ plantApiController.plantData = async (req, res, next) => {
   try {
     const response = await axios.request(options);
     console.log('response', response.data);
-    res.locals.response = response.data;
+    rawdata = response.data;
+    plant = parsePlantRawdata(rawdata);
+    console.log(`plant is: ${JSON.stringify(plant)}`)  
+    //res.locals.response = response.data;
+    res.locals.response = plant;
   } catch (error) {
     console.error('error', error);
   }
@@ -50,4 +54,6 @@ plantApiController.databaseSave = async (req, res, next) => {
   }
   next();
 };
+
+
 module.exports = plantApiController;

@@ -5,10 +5,12 @@ const authJWT = require('../middleware/authJWT');
 
 apiRouter.post(
   '/',
-  plantApiController.plantData,
-  plantApiController.databaseSave,
+  plantApiController.getPlantData,
+  //plantApiController.databaseSave,
   (req, res, next) => {
-    res.status(200).json({});
+    console.log('res')
+    console.log(res.locals.response)
+    res.status(200).json(plant);
   }
 );
 
