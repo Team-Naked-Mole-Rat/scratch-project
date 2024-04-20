@@ -21,10 +21,10 @@ apiRouter.post(
 apiRouter.get('/:username/plants',
   ( req, res, next ) => {
 
-    const bearerHeader = req.headers['authorization'];
+    const token = req.headers['authorization'] ? req.headers['authorization'].split(' ')[1] : null;
 
     console.log("::getUserPlants::", req.params);
-    console.log("::getUserPlants::", bearerHeader);
+    console.log("::getUserPlants BEARER::", token);
 
     return next();
   },
@@ -101,11 +101,11 @@ addPlant OBJECT EXAMPLE:
 apiRouter.post('/:username/addPlant',
   ( req, res, next ) => {
 
-    const bearerHeader = req.headers['authorization'];
+    const token = req.headers['authorization'] ? req.headers['authorization'].split(' ')[1] : null;
 
     console.log("::addPlant::", req.params);
     console.log("::addPlant::", req.body);
-    console.log("::addPlant::", bearerHeader);
+    console.log("::addPlant BEARER::", token);
 
     return next();
   },
@@ -172,11 +172,11 @@ editPlant OBJECT EXAMPLE:
 apiRouter.post('/:username/editPlant',
   ( req, res, next ) => {
 
-    const bearerHeader = req.headers['authorization'];
+    const token = req.headers['authorization'] ? req.headers['authorization'].split(' ')[1] : null;
 
     console.log("::editPlant::", req.params);
     console.log("::editPlant::", req.body);
-    console.log("::editPlant::", bearerHeader);
+    console.log("::editPlant BEARER::", token);
 
     return next();
   },
@@ -234,11 +234,11 @@ DELETE /api/user123/plants/12345
 apiRouter.post('/:username/deletePlant',
   ( req, res, next ) => {
 
-    const bearerHeader = req.headers['authorization'];
+    const token = req.headers['authorization'] ? req.headers['authorization'].split(' ')[1] : null;
 
     console.log("::deletePlant::", req.params);
     console.log("::deletePlant::", req.body);
-    console.log("::deletePlant::", bearerHeader);
+    console.log("::deletePlant BEARER::", token);
 
     return next();
   },
