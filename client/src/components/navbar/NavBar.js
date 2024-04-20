@@ -1,40 +1,39 @@
-import React, { useCallback } from "react";
-import { NavLink, Outlet, useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { openModal } from "./../../features/modals/modalsSlice.js";
-import RegisterModal from "./../../pages/Login/RegisterModal.js";
-import { useLogoutMutation } from "../../features/api/registerApiSlice.js";
-import { clearCredentials } from "../../features/auth/authSlice.js";
+import React, { useCallback } from 'react';
+import { NavLink, Outlet, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { openModal } from './../../features/modals/modalsSlice.js';
+import RegisterModal from './../../pages/Login/RegisterModal.js';
+import { useLogoutMutation } from '../../features/api/registerApiSlice.js';
+import { clearCredentials } from '../../features/auth/authSlice.js';
 
 function NavBar() {
   const dispatch = useDispatch();
 
-  const { success, userInfo } = useSelector(state => state.auth );
+  const { success, userInfo } = useSelector(state => state.auth);
   const userRoles = userInfo?.roles || [];
 
   const token = localStorage.getItem('token');
 
-  const [ logoutApiCall ] = useLogoutMutation();
+  const [logoutApiCall] = useLogoutMutation();
 
   const handleOpenModal = useCallback(() => {
-    dispatch(openModal({ modalId: "loginSignupModal" }));
+    dispatch(openModal({ modalId: 'loginSignupModal' }));
   }, [dispatch]);
 
-  const handleLogout = async (e) => {
+  const handleLogout = async e => {
     e.preventDefault();
     try {
-
       await logoutApiCall({
         userInfo: {
           username: userInfo.username,
-          roles: userInfo.roles
+          roles: userInfo.roles,
         },
-        token: token
+        token: token,
       }).unwrap();
 
       dispatch(clearCredentials());
     } catch (err) {
-      console.log("Error logging out");
+      console.log('Error logging out');
       console.error(err?.data?.message || err.error);
     }
   };
@@ -49,14 +48,14 @@ function NavBar() {
               to="/"
               end
               className={({ isActive }) =>
-                isActive ? "nav-link nav-link-active" : "nav-link"
+                isActive ? 'nav-link nav-link-active' : 'nav-link'
               }
             >
               About
             </NavLink>
           </li>
 
-            {/* <li>
+          {/* <li>
               <NavLink
                 to="contact"
                 className={({ isActive }) =>
@@ -77,17 +76,17 @@ function NavBar() {
           Signin2
           </NavLink>
         </li> */}
-          {userRoles.includes('user') && ( 
-          <li>
-            <NavLink
-              to="plants"
-              className={({ isActive }) =>
-                isActive ? "nav-link nav-link-active" : "nav-link"
-              }
-            >
-              My Plants
-            </NavLink>
-                    </li>
+          {userRoles.includes('user') && (
+            <li>
+              <NavLink
+                to="plants"
+                className={({ isActive }) =>
+                  isActive ? 'nav-link nav-link-active' : 'nav-link'
+                }
+              >
+                My Plants
+              </NavLink>
+            </li>
           )}
 
           {!success ? (
@@ -98,7 +97,9 @@ function NavBar() {
             </li>
           ) : (
             <li>
-              <button onClick={handleLogout}>Logout</button>
+              <button onClick={handleLogout} className="nav-link">
+                Logout
+              </button>
             </li>
           )}
         </nav>

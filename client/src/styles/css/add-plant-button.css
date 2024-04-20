@@ -1,0 +1,31 @@
+@keyframes moveRight {
+  from {
+    background-position: 0% center;
+  }
+  to {
+    background-position: -200% center;
+  }
+}
+
+.add-plant-button {
+  color: #0c5b1a;
+  font-size: 20px;
+  font-weight: bold;
+  border: 1px solid #083b13;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  padding-inline: 20px;
+  padding-block: 10px;
+  animation: moveRight 3s linear infinite;
+  background: linear-gradient(
+    to right,
+    rgb(4, 74, 26),
+    rgb(54, 152, 74),
+    rgb(42, 188, 101),
+    rgb(4, 74, 26)
+  );
+  background-size: 200%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
