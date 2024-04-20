@@ -6,8 +6,8 @@ const PlantCard = ({ plant }) => {
     <div className="bg-white/90 max-w-md mx-auto rounded overflow-hidden shadow-md m-4">
       <img
         className="w-full h-64 object-cover"
-        src={`http://localhost:3000/images/${plant.plant_filename}`}
-        alt={plant.name}
+        src={plant.plant_filename ? `http://localhost:3000/images/${plant.plant_filename}` : "http://localhost:3000/images/defaultimg.png"}
+        alt={plant.plantname}
       />
       <div className="px-6 py-4">
         <div

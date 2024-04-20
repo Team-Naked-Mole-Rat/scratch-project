@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
-import PlantCard from './PlantCard.js';
-import { useGetUserPlantsQuery } from '../../features/api/plantsApiSlice.js';
-import { openModal } from '../../features/modals/modalsSlice.js';
-import AddPlantModal from './AddPlantModal.js';
-import './../../styles/css/add-plant-button.css';
+import React, { useState } from "react";
+import PlantCard from "./PlantCard.js";
+import { useGetUserPlantsQuery } from "../../features/api/plantsApiSlice.js";
+import { openModal } from "../../features/modals/modalsSlice.js";
+import AddPlantModal from "./AddPlantModal.js";
+import "./../../styles/css/add-plant-button.css";
 
 export default function Plants() {
-  const { data, isError, isLoading } = useGetUserPlantsQuery();
+  const { data, isError, isLoading, refetch } = useGetUserPlantsQuery();
   const [showAddPlantModal, setShowAddPlantModal] = useState(false);
 
   const handleOpenModal = () => {
@@ -17,13 +17,17 @@ export default function Plants() {
     setShowAddPlantModal(false);
   };
 
-  if (isError) {
-    return <h1>Error fetching user plants</h1>;
-  }
+  // if (isError) {
+  //   return <h1>Error fetching user plants</h1>;
+  // }
 
   if (isLoading) {
     return <h1>Loading user plants...</h1>;
   }
+
+  const handleAddPlant = async () => {
+    await refetch();
+  };
 
   return (
     // <div className="main-content">
@@ -31,7 +35,7 @@ export default function Plants() {
     <div>
       <h1 className="text-3xl font-bold text-center my-8">My Plants</h1>
       <div className="flex justify-center">
-        {' '}
+        {" "}
         <button onClick={handleOpenModal} className="add-plant-button">
           Add a Plant
         </button>
@@ -42,7 +46,7 @@ export default function Plants() {
           <PlantCard key={index} plant={plant} />
         ))}
       </div>
-      <AddPlantModal isOpen={showAddPlantModal} onClose={handleCloseModal} />
+      <AddPlantModal isOpen={showAddPlantModal} onClose={handleCloseModal} onAddPlant={handleAddPlant} />
     </div>
   );
 }
