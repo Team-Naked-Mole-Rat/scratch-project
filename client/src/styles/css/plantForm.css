@@ -1,11 +1,12 @@
 .main-plant-content {
     font-family: 'Arial', sans-serif;
     max-width: 400px;
-    margin: 50px auto;
-    padding: 20px;
+    /* margin: 50px auto; */
+    /* padding: 20px; */
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     background-color: #f4f4f4;
+    margin: -20px;
   }
   
   h11 {
@@ -18,6 +19,7 @@
   form {
     display: flex;
     flex-direction: column;
+    padding: 20px;
   }
   
   label {

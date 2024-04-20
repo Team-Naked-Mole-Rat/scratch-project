@@ -56,38 +56,45 @@ export default function AddPlantForm({ onClose }) {
     <div className="main-content">
       <div className="main-plant-content">
         <form onSubmit={handleSubmit}>
-        <div className="font-bold text-xl mb-2 text-gray-700">Add a New Plant</div>
-
+          <div 
+            className="font-bold text-xl mb-2 text-gray-700"
+          >
+            Add a New Plant
+          </div>
 
           <label>Plant Name:</label>
           <input className="border rounded py-2 px-4 mb-4 w-full" type="text" id="plantName" name="plantName" value={formData.plantName} onChange={handleChange} placeholder="Enter the plant's name" />
           
-                    <div className="flex items-center space-x-2">
+            <div className="flex items-center space-x-2">
             <input 
-            className="align-middle" 
-            type="checkbox" 
-            id="plantFavFlag" 
-            name="plantFavFlag" 
-            checked={formData.plantFavFlag} 
-            onChange={handleChange} 
+              className="align-middle" 
+              type="checkbox" 
+              id="plantFavFlag" 
+              name="plantFavFlag" 
+              checked={formData.plantFavFlag} 
+              onChange={handleChange} 
             />
-          <label htmlFor="plantFavFlag">Add to favorites:</label>
+
+            <label 
+              htmlFor="plantFavFlag"
+            >
+              Add to favorites:
+            </label>
+
           </div>
           
           <label>Plant Needs:</label>
           <input className="border rounded py-2 px-4 mb-4 w-full" type="text" id="plantWateringInstructions" name="plantWateringInstructions" value={formData.plantWateringInstructions} onChange={handleChange} placeholder="Describe watering needs" />
-            {/* <label>Fertilizing Instructions:</label> */}
+
           <input className="border rounded py-2 px-4 mb-4 w-full" type="text" id="plantFertilizeInstructions" name="plantFertilizeInstructions" value={formData.plantFertilizeInstructions} onChange={handleChange} placeholder="Provide fertilizing instructions" />
-          {/* <label>Sunlight:</label> */}
+
           <input className="border rounded py-2 px-4 mb-4 w-full" type="text" id="plantSunlight" name="plantSunlight" value={formData.plantSunlight} onChange={handleChange} placeholder="Required sunlight exposure" />
-          {/* <label>Plant Location:</label> */}
+
           <input className="border rounded py-2 px-4 mb-4 w-full" type="text" id="plantLocation" name="plantLocation" value={formData.plantLocation} onChange={handleChange} placeholder="Plant location in home/garden" />
-
-
 
           <label>Plant Image:</label>
           <FileUploader className="mb-4" types={fileTypes} id="plantImage" name="plantImage" handleChange={handleFileChange} />
-          <button type="submit">Submit</button>
+          <button className="register form-button"type="submit">Submit</button>
         </form>
       </div>
     </div>
