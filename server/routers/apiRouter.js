@@ -1,3 +1,7 @@
+// plant_instructions in reminder will become imagefilename
+// https://stackoverflow.com/questions/22288898/insert-an-image-in-postgresql-database
+// OR mongo
+
 const express = require('express');
 const apiRouter = express.Router();
 const plantApiController = require('./../controllers/plantApiController.js');
@@ -16,7 +20,12 @@ apiRouter.post(
 
 apiRouter.get('/:username/plants',
   ( req, res, next ) => {
+
+    const bearerHeader = req.headers['authorization'];
+
     console.log("::getUserPlants::", req.params);
+    console.log("::getUserPlants::", bearerHeader);
+
     return next();
   },
   ( req, res ) => {
@@ -91,8 +100,13 @@ addPlant OBJECT EXAMPLE:
 
 apiRouter.post('/:username/addPlant',
   ( req, res, next ) => {
+
+    const bearerHeader = req.headers['authorization'];
+
     console.log("::addPlant::", req.params);
-    console.log("::addPlant::", req.body)
+    console.log("::addPlant::", req.body);
+    console.log("::addPlant::", bearerHeader);
+
     return next();
   },
   ( req, res ) => {
@@ -157,8 +171,13 @@ editPlant OBJECT EXAMPLE:
 */
 apiRouter.post('/:username/editPlant',
   ( req, res, next ) => {
+
+    const bearerHeader = req.headers['authorization'];
+
     console.log("::editPlant::", req.params);
-    console.log("::editPlant::", req.body)
+    console.log("::editPlant::", req.body);
+    console.log("::editPlant::", bearerHeader);
+
     return next();
   },
   ( req, res ) => {
@@ -214,8 +233,13 @@ DELETE /api/user123/plants/12345
 
 apiRouter.post('/:username/deletePlant',
   ( req, res, next ) => {
-    console.log("::editPlant::", req.params);
-    console.log("::editPlant::", req.body)
+
+    const bearerHeader = req.headers['authorization'];
+
+    console.log("::deletePlant::", req.params);
+    console.log("::deletePlant::", req.body);
+    console.log("::deletePlant::", bearerHeader);
+
     return next();
   },
   ( req, res ) => {
