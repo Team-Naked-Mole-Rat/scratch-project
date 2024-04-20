@@ -8,8 +8,9 @@ const plantApiController = require("./../controllers/plantApiController.js");
 const userPlantController = require("./../controllers/userPlantController.js");
 const authJWT = require("../middleware/authJWT");
 const upload = require("../middleware/multer");
-const multer = require('multer');
+const multer = require("multer");
 
+// LEGACY
 apiRouter.post(
   "/",
   upload.single("file"),
@@ -65,12 +66,14 @@ apiRouter.post(
 
     return next();
   },
-  upload.single('imageData'), 
-  (req, res, next ) => {
-    console.log('Received data for user:', req.params.username);
-    console.log('Form fields:', req.body);
+  upload.single("imageData"),
+  plantApiController.getPlantData,
+  userPlantController.createUserplant,
+  (req, res, next) => {
+    console.log("Received data for user:", req.params.username);
+    console.log("Form fields:", req.body);
     if (req.file) {
-        console.log('Uploaded file:', req.file);
+      console.log("Uploaded file:", req.file);
     }
     return next();
   },
@@ -78,7 +81,7 @@ apiRouter.post(
     return res.status(200).json({
       success: true,
       message: "Plant added successfully",
-      plant: req.body
+      plant: req.body,
     });
   }
 );

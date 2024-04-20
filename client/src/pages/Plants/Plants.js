@@ -8,7 +8,7 @@ import './../../styles/css/add-plant-button.css';
 
 
 export default function Plants() {
-  const { data, isError, isLoading } = useGetUserPlantsQuery();
+  const { data, isError, isLoading, refetch } = useGetUserPlantsQuery();
   const [showAddPlantModal, setShowAddPlantModal] = useState(false);
   const [ deletePlant ] = useDeletePlantMutation();
 
@@ -29,20 +29,24 @@ export default function Plants() {
     setShowAddPlantModal(false);
   };
 
-  if (isError) {
-    return <h1>Error fetching user plants</h1>;
-  }
+  // if (isError) {
+  //   return <h1>Error fetching user plants</h1>;
+  // }
 
   if (isLoading) {
     return <h1>Loading user plants...</h1>;
   }
+
+  const handleAddPlant = async () => {
+    await refetch();
+  };
 
   return (
 
     <div>
       <h1 className="text-3xl font-bold text-center my-8">My Plants</h1>
       <div className="flex justify-center">
-        {' '}
+        {" "}
         <button onClick={handleOpenModal} className="add-plant-button">
           Add a Plant
         </button>
@@ -53,7 +57,7 @@ export default function Plants() {
           <PlantCard key={index} plant={plant} username={data.username} onDelete={handleDelete}/>
         ))}
       </div>
-      <AddPlantModal isOpen={showAddPlantModal} onClose={handleCloseModal} />
+      <AddPlantModal isOpen={showAddPlantModal} onClose={handleCloseModal} onAddPlant={handleAddPlant} />
     </div>
   );
 }

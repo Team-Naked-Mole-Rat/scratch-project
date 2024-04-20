@@ -5,7 +5,7 @@ userPlantController.createUserplant = async (req, res, next) => {
   console.log("start");
 
   try {
-    const { username } = req.body;
+    const { username } = req.params;
     const { filename } = req.file;
     const { name, attentionNeeded, condition } = res.locals.plant;
 
@@ -89,13 +89,14 @@ userPlantController.createUserplant = async (req, res, next) => {
     console.log(`resulst5: ${JSON.stringify(result5.rows[0])}`);
     const instruction_id_max = result5.rows[0].max;
 
-    const text = `INSERT INTO plant_instructions (_id, upid, plant_status, plant_instruction, fav_flag)
-    VALUES ($1,$2,$3,$4,$5)
+    const text = `INSERT INTO plant_instructions (_id, upid, plant_status, plant_filename, plant_instruction, fav_flag)
+    VALUES ($1,$2,$3,$4,$5,$6)
     RETURNING *`;
     const params = [
       instruction_id_max + 1,
       upid,
       plant_status,
+      filename,
       condition,
       false,
     ];
@@ -105,7 +106,7 @@ userPlantController.createUserplant = async (req, res, next) => {
       throw new Error("Error inserting into plant_instructions");
     }
     res.locals.plant = result.rows[0];
-    console.log(res.locals.plant + "/n Success!!");
+    console.log("Success!!\n" + JSON.stringify(res.locals.plants));
     return next();
   } catch (err) {
     console.error("Error in userPlantControllersignupUser:", err);
@@ -117,7 +118,7 @@ userPlantController.getUserPlants = async (req, res, next) => {
   const { username } = req.params
   console.log(`username is ${username}`);
   try {
-    const text = `select username, plantname, plant_status, plant_instruction, fav_flag from users a, plants b, user_plant c, plant_instructions d
+    const text = `select username, plantname, plant_status, plant_filename, plant_instruction, fav_flag from users a, plants b, user_plant c, plant_instructions d
     where a._id = c.user_id
     and b._id = c.plant_id
     and c._id = d.upid
