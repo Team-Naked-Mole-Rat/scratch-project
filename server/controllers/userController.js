@@ -24,14 +24,11 @@ userController.signupUser = async (req, res) => {
 
     const result = await db.query(text, params);
 
-  
-
     if (result.rowCount !== 1) {
       //insert record error if rowCount not equal to 1
       throw err;
     }
 
- 
     const userInfo = result.rows[0];
     userInfo.userpassword = null; //hide password
     
