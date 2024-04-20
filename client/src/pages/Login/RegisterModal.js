@@ -29,7 +29,7 @@ function RegisterModal() {
   const modalBody = (
     <div style={{ position: 'relative', height: '100%', width: '100%' }}>
       <BackgroundImage />
-      
+
       { isLogin ? ( 
         <LoginPage toggleForm={toggleForm} /> 
       ) : ( 
