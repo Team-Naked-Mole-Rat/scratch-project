@@ -1,13 +1,25 @@
 import React, { useState } from 'react';
 import PlantCard from './PlantCard.js';
-import { useGetUserPlantsQuery } from '../../features/api/plantsApiSlice.js';
+import { useSelector } from 'react-redux';
+import { useGetUserPlantsQuery, useDeletePlantMutation } from '../../features/api/plantsApiSlice.js';
 import { openModal } from '../../features/modals/modalsSlice.js';
 import AddPlantModal from './AddPlantModal.js';
 import './../../styles/css/add-plant-button.css';
 
+
 export default function Plants() {
   const { data, isError, isLoading } = useGetUserPlantsQuery();
   const [showAddPlantModal, setShowAddPlantModal] = useState(false);
+  const [ deletePlant ] = useDeletePlantMutation();
+
+  const userInfo = useSelector(state => state.auth.userInfo);
+  const username = userInfo ? userInfo.username : null;
+  
+  const handleDelete = (username, plantId) => {
+    deletePlant({ username, plantId }).unwrap()
+      .then((response) => console.log('Delete successful:', response))
+      .catch((error) => console.error('Failed to delete:', error));
+  };
 
   const handleOpenModal = () => {
     setShowAddPlantModal(true);
@@ -26,8 +38,7 @@ export default function Plants() {
   }
 
   return (
-    // <div className="main-content">
-    // <div className="grid place-content-center">
+
     <div>
       <h1 className="text-3xl font-bold text-center my-8">My Plants</h1>
       <div className="flex justify-center">
@@ -39,7 +50,7 @@ export default function Plants() {
 
       <div className="flex flex-wrap justify-center mx-20 border-t border-green-600 pt-10">
         {data?.plants.map((plant, index) => (
-          <PlantCard key={index} plant={plant} />
+          <PlantCard key={index} plant={plant} username={data.username} onDelete={handleDelete}/>
         ))}
       </div>
       <AddPlantModal isOpen={showAddPlantModal} onClose={handleCloseModal} />

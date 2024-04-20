@@ -1,6 +1,6 @@
 import React from 'react';
 
-const PlantCard = ({ plant }) => {
+const PlantCard = ({ plant, username, onDelete }) => {
   console.log('plant: ', plant);
   return (
     <div className="bg-white/90 max-w-md mx-auto rounded overflow-hidden shadow-md m-4">
@@ -10,6 +10,7 @@ const PlantCard = ({ plant }) => {
         alt={plant.name}
       /> */}
       <div className="px-6 py-4">
+        <button className="" onClick={() => onDelete(username, plant.id)}>X</button>
         <div
           className={`font-bold text-xl mb-2 ${
             plant.fav_flag ? 'text-yellow-300' : 'text-gray-700'
@@ -20,6 +21,7 @@ const PlantCard = ({ plant }) => {
         <p className="text-gray-700">Status: {plant.plant_status}</p>
         <p className="text-gray-700">Next water: {plant.plant_reminder}</p>
         <p className="text-gray-700">Diagnosis: {plant.plant_instruction}</p>
+
       </div>
     </div>
   );

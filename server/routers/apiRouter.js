@@ -178,6 +178,9 @@ editPlant EXAMPLE ERROR:
 
 DELETE /api/user123/plants/12345
 /api/user123/plants/${plantId}
+
+"username"
+"plantId"
 */
 
 apiRouter.post(

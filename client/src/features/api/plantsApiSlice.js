@@ -41,13 +41,12 @@ export const plantsApiSlice = apiSlice.injectEndpoints({
     }),
     deletePlant: builder.mutation({
 
-      queryFn: (data, queryApi, extraOptions, baseQuery) => {
-        const username = queryApi.getState().auth.userInfo?.username;
+      queryFn: ({ username, plantId }, queryApi, extraOptions, baseQuery) => {
         if (!username) {
           return { error: { status: 'CUSTOM_ERROR', error: 'Username not found in the state.' } };
         }
-        const url = `/api/${username}/deletePlant`;
-        return baseQuery({ url, method: 'DELETE', body: data });
+        const url = `/api/${username}/deletePlant/${plantId}`;
+        return baseQuery({ url, method: 'DELETE' });
       }
 
     }),
