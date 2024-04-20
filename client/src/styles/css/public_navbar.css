@@ -20,11 +20,11 @@
   background-color: #1a7f2b15;
   padding: 10px;
 }
-.main-content {
+/* .main-content {
   margin-left: 200px;
   padding: 20px;
   overflow-x: hidden;
-}
+} */
 .form-group {
   /* margin-bottom: 15px; */
   /* padding: 20px; */
@@ -39,7 +39,7 @@
 }
 
 .nav-link:hover {
-  color: #0a4716;
+  color: #4caf50;
 }
 
 .nav-link-active {
@@ -49,7 +49,7 @@
 }
 
 .nav-link-active:hover {
-  color: #0e6f1e;
+  color: #4caf50;
 }
 
 li {
