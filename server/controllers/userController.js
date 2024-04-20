@@ -12,7 +12,7 @@ const userController = {};
  */
 userController.signupUser = async (req, res) => {
   try {
-    const { username, password } = req.body.user;
+    const { username, password } = req.body.userInfo;
     //pending - add check if user exist already
     const hashedPassword = await bcrypt.hash(password, 10);
 
@@ -24,19 +24,27 @@ userController.signupUser = async (req, res) => {
 
     const result = await db.query(text, params);
 
+  
+
     if (result.rowCount !== 1) {
       //insert record error if rowCount not equal to 1
       throw err;
     }
 
-    const user = result.rows[0];
+ 
+    const userInfo = result.rows[0];
+    userInfo.userpassword = null; //hide password
+    
+    generateToken(res, userInfo._id);
 
-    // Set JWT cookie - only working on postman
-    generateToken(res, user._id);
+    res.locals.userInfo = res.locals.userInfo || {};
+    res.locals.userInfo.username = res.locals.userInfo.username || {};
+    res.locals.userInfo.username = userInfo.username;
+    res.locals.userInfo.roles = res.locals.userInfo.roles || {};
+    res.locals.userInfo.roles = userInfo.roles;
+    console.log("::SIGNUPsend:: ", res.locals)
 
-    user.userpassword = null; //hide password
-
-    return res.status(201).json(user);
+    return res.status(201).json(res.locals);
   } catch (err) {
     console.error("Error in userControllersignupUser:", err);
     return res
@@ -51,7 +59,7 @@ userController.signupUser = async (req, res) => {
  */
 userController.verifyUser = async (req, res, next) => {
   try {
-    const { username, password } = req.body.user;
+    const { username, password } = req.body.userInfo;
     const text = `SELECT * FROM USERS WHERE USERNAME= $1`;
     const params = [username];
 
@@ -63,20 +71,28 @@ userController.verifyUser = async (req, res, next) => {
       return res.status(400).send("User does not exist");
     }
 
-    const user = result.rows[0];
+    const userInfo = result.rows[0];
+    const auth = await bcrypt.compare(password, userInfo.userpassword); // Verify password
+    userInfo.userpassword = null; // hide user password
 
-    // Verify password
-    const auth = await bcrypt.compare(password, user.userpassword);
-    if (!auth) {
+    if ( !auth ) {
       console.log("password not match");
       return res
         .status(401)
         .json(`User ${username} password verification failed!`);
     }
-    user.userpassword = null; // hide user password
     // Set JWT cookie - only working on postman
-    generateToken(res, user._id);
-    return res.status(201).json({ user });
+    generateToken(res, userInfo._id);
+
+    res.locals.userInfo = res.locals.userInfo || {};
+    res.locals.userInfo.username = res.locals.userInfo.username || {};
+    res.locals.userInfo.username = userInfo.username;
+    res.locals.userInfo.roles = res.locals.userInfo.roles || {};
+    res.locals.userInfo.roles = userInfo.roles;
+    console.log("::LOGINsend:: ", res.locals)    
+
+    return res.status(201).json( res.locals );
+
   } catch (err) {
     console.error("Error in userControllerverifyUser:", err);
     return res.status(500).json({ error: "userControllerverifyUser error" });
