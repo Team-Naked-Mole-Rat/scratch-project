@@ -1,16 +1,18 @@
-import React, { useState } from 'react';
-import { FileUploader } from 'react-drag-drop-files';
-import './../../styles/css/plantForm.css';
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
+import { FileUploader } from "react-drag-drop-files";
+import "./../../styles/css/plantForm.css";
 
-const fileTypes = ['JPG', 'PNG'];
+const fileTypes = ["JPG", "PNG"];
 
 export default function AddPlantForm() {
   const [formData, setFormData] = useState({
-    plantType: '',
-    plantImage: '',
-    plantLocation: '',
+    plantType: "",
+    plantImage: "",
+    plantLocation: "",
   });
   const [file, setFile] = useState(null);
+  const { userInfo } = useSelector((state) => state.auth);
 
   //   const handleChange = (event) => {
   //     //update state with the form data
@@ -35,12 +37,26 @@ export default function AddPlantForm() {
     });
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  // Create new plant submit
+  // Will throw error if not authorized
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     // need connect to db and add this plant to the logged in users list of plants
+    try {
+      const fileForm = new FormData();
+      fileForm.append("file", file);
+      fileForm.append("username", userInfo.username);
 
-    console.log('form data', formData);
-    console.log('file', file);
+      console.log("form data", fileForm);
+      console.log("file", file);
+
+      const response = await fetch("http://localhost:3000/api", {
+        method: "POST",
+        body: fileForm,
+      });
+    } catch (err) {
+      console.error("Error submitting form");
+    }
   };
   return (
     <div className="main-content">

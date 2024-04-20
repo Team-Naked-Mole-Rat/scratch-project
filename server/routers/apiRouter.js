@@ -2,88 +2,41 @@
 // https://stackoverflow.com/questions/22288898/insert-an-image-in-postgresql-database
 // OR mongo
 
-const express = require('express');
+const express = require("express");
 const apiRouter = express.Router();
-const plantApiController = require('./../controllers/plantApiController.js');
-const userPlantController = require('./../controllers/userPlantController.js');
-const authJWT = require('../middleware/authJWT');
+const plantApiController = require("./../controllers/plantApiController.js");
+const userPlantController = require("./../controllers/userPlantController.js");
+const authJWT = require("../middleware/authJWT");
+const upload = require("../middleware/multer");
 
 apiRouter.post(
-  '/',
+  "/",
+  upload.single("file"),
   plantApiController.getPlantData,
-  userPlantController.createUserplant, 
+  userPlantController.createUserplant,
   //plantApiController.databaseSave,
   (req, res, next) => {
     res.status(200).json(plant);
   }
 );
 
-apiRouter.get('/:username/plants',
-  ( req, res, next ) => {
-
-    const token = req.headers['authorization'] ? req.headers['authorization'].split(' ')[1] : null;
+apiRouter.get(
+  "/:username/plants",
+  (req, res, next) => {
+    const token = req.headers["authorization"]
+      ? req.headers["authorization"].split(" ")[1]
+      : null;
 
     console.log("::getUserPlants::", req.params);
     console.log("::getUserPlants BEARER::", token);
 
     return next();
   },
-  ( req, res ) => {
-     
-    return res.status(200).json({
-      "plants": [
-        {
-          "username": "user123",
-          "plantname": "Rose",
-          "plant_status": "healthy",
-          "plant_instruction": "Water daily during summer",
-          "plant_reminder": "water every day",
-          "fav_flag": true
-        },
-        {
-          "username": "user123",
-          "plantname": "Tulip",
-          "plant_status": "needs attention",
-          "plant_instruction": "Add fertilizer",
-          "plant_reminder": "fertilize once a month",
-          "fav_flag": false
-        },
-        {
-          "username": "user123",
-          "plantname": "Orchid",
-          "plant_status": "healthy",
-          "plant_instruction": "Avoid direct sunlight",
-          "plant_reminder": "water every 5 days",
-          "fav_flag": true
-        },
-        {
-          "username": "user123",
-          "plantname": "Cactus",
-          "plant_status": "healthy",
-          "plant_instruction": "Water sparingly",
-          "plant_reminder": "water every 30 days",
-          "fav_flag": false
-        },
-        {
-          "username": "user123",
-          "plantname": "Fern",
-          "plant_status": "unhealthy",
-          "plant_instruction": "Needs humidity",
-          "plant_reminder": "spray daily",
-          "fav_flag": false
-        },
-        {
-          "username": "user123",
-          "plantname": "Bonsai",
-          "plant_status": "healthy",
-          "plant_instruction": "Prune regularly",
-          "plant_reminder": "prune every 2 months",
-          "fav_flag": true
-        }
-      ]
-    })
+  userPlantController.getUserPlants,
+  (req, res) => {
+    return res.status(200).json(res.locals.plants);
   }
-)
+);
 /*
 
 addPlant OBJECT EXAMPLE:
@@ -98,10 +51,12 @@ addPlant OBJECT EXAMPLE:
 
 */
 
-apiRouter.post('/:username/addPlant',
-  ( req, res, next ) => {
-
-    const token = req.headers['authorization'] ? req.headers['authorization'].split(' ')[1] : null;
+apiRouter.post(
+  "/:username/addPlant",
+  (req, res, next) => {
+    const token = req.headers["authorization"]
+      ? req.headers["authorization"].split(" ")[1]
+      : null;
 
     console.log("::addPlant::", req.params);
     console.log("::addPlant::", req.body);
@@ -109,23 +64,21 @@ apiRouter.post('/:username/addPlant',
 
     return next();
   },
-  ( req, res ) => {
-
+  (req, res) => {
     return res.status(200).json({
-      "success": true,
-      "message": "Plant added successfully",
-      "plant": {
-        "username": "user123",
-        "plantname": "Lavender",
-        "plant_status": "healthy",
-        "plant_instruction": "Needs full sun",
-        "plant_reminder": "water every week",
-        "fav_flag": true
-      }
+      success: true,
+      message: "Plant added successfully",
+      plant: {
+        username: "user123",
+        plantname: "Lavender",
+        plant_status: "healthy",
+        plant_instruction: "Needs full sun",
+        plant_reminder: "water every week",
+        fav_flag: true,
+      },
     });
-  },
-)
-
+  }
+);
 
 /*
 addPlant EXAMPLE SUCCESS:
@@ -153,10 +106,6 @@ addPlant EXAMPLE ERROR:
 
 */
 
-
-
-
-
 /*
 
 editPlant OBJECT EXAMPLE:
@@ -169,10 +118,12 @@ editPlant OBJECT EXAMPLE:
   "fav_flag": false
 }
 */
-apiRouter.post('/:username/editPlant',
-  ( req, res, next ) => {
-
-    const token = req.headers['authorization'] ? req.headers['authorization'].split(' ')[1] : null;
+apiRouter.post(
+  "/:username/editPlant",
+  (req, res, next) => {
+    const token = req.headers["authorization"]
+      ? req.headers["authorization"].split(" ")[1]
+      : null;
 
     console.log("::editPlant::", req.params);
     console.log("::editPlant::", req.body);
@@ -180,22 +131,21 @@ apiRouter.post('/:username/editPlant',
 
     return next();
   },
-  ( req, res ) => {
-
+  (req, res) => {
     return res.status(200).json({
-      "success": true,
-      "message": "Plant added successfully",
-      "plant": {
-        "username": "user123",
-        "plantname": "Lavender",
-        "plant_status": "healthy",
-        "plant_instruction": "Needs full sun",
-        "plant_reminder": "water every week",
-        "fav_flag": true
-      }
+      success: true,
+      message: "Plant added successfully",
+      plant: {
+        username: "user123",
+        plantname: "Lavender",
+        plant_status: "healthy",
+        plant_instruction: "Needs full sun",
+        plant_reminder: "water every week",
+        fav_flag: true,
+      },
     });
-  },
-)
+  }
+);
 
 /*
 editPlant EXAMPLE SUCCESS:
@@ -222,19 +172,18 @@ editPlant EXAMPLE ERROR:
 
 */
 
-
 /*
 
 DELETE /api/user123/plants/12345
 /api/user123/plants/${plantId}
 */
 
-
-
-apiRouter.post('/:username/deletePlant',
-  ( req, res, next ) => {
-
-    const token = req.headers['authorization'] ? req.headers['authorization'].split(' ')[1] : null;
+apiRouter.post(
+  "/:username/deletePlant",
+  (req, res, next) => {
+    const token = req.headers["authorization"]
+      ? req.headers["authorization"].split(" ")[1]
+      : null;
 
     console.log("::deletePlant::", req.params);
     console.log("::deletePlant::", req.body);
@@ -242,22 +191,21 @@ apiRouter.post('/:username/deletePlant',
 
     return next();
   },
-  ( req, res ) => {
-
+  (req, res) => {
     return res.status(200).json({
-      "success": true,
-      "message": "Plant added successfully",
-      "plant": {
-        "username": "user123",
-        "plantname": "Lavender",
-        "plant_status": "healthy",
-        "plant_instruction": "Needs full sun",
-        "plant_reminder": "water every week",
-        "fav_flag": true
-      }
+      success: true,
+      message: "Plant added successfully",
+      plant: {
+        username: "user123",
+        plantname: "Lavender",
+        plant_status: "healthy",
+        plant_instruction: "Needs full sun",
+        plant_reminder: "water every week",
+        fav_flag: true,
+      },
     });
-  },
-)
+  }
+);
 
 /*
 deletePlant EXAMPLE SUCCESS:
@@ -276,6 +224,5 @@ editPlant EXAMPLE ERROR:
 }
 
 */
-
 
 module.exports = apiRouter;
