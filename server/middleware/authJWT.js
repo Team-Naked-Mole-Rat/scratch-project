@@ -6,7 +6,12 @@ const authJWT = (req, res, next) => {
   console.log(token);
   // check json web token exists & is verified
   if (token) {
-    jwt.verify(token, process.env.JWT_SECRET, (err, decodedToken) => {
+    /*
+      WARNING:  JWT_SECRET SHOULD BE A .ENV VAR BUT SET TO A STRING HERE FOR CONSISTENCY
+    */
+    const JWT_SECRET = 'process.env.JWT_SECRET'   // 
+
+    jwt.verify(token, JWT_SECRET, (err, decodedToken) => {
       if (err) {
         console.log(err.message);
         return res.status(401).redirect("/");

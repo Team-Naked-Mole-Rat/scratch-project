@@ -10,19 +10,7 @@ authRouter.post('/login',
 
     return next()
   },
-  // userController.verifyUser, 
-  (req, res) => {
-    //to user summary page?
-    res.status(200).json(
-    {
-      "userInfo": {
-        "username": "TESTUSER",
-        "roles": ["user"]
-      },
-      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkFEQU1EVURBIiwicm9sZXMiOlsidXNlciJdfQ.b1CaNXB8wKDPEiyVmxKzkmqp-K0G1fKgJlzOoQvBYc4",
-    }
-  );
-  }
+  userController.verifyUser, 
 );
 
 authRouter.post('/signup', 
@@ -33,17 +21,7 @@ authRouter.post('/signup',
 
     return next()
   },
-  // userController.signupUser, 
-  (req, res) => {
-    //to user summary page?
-    res.status(200).json({
-      "userInfo": {
-        "username": "TESTUSER",
-        "roles": ["user"]
-      },
-      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkFEQU1EVURBIiwicm9sZXMiOlsidXNlciJdfQ.b1CaNXB8wKDPEiyVmxKzkmqp-K0G1fKgJlzOoQvBYc4",
-    });
-  }
+  userController.signupUser,
 );
 
 authRouter.post('/logout', 
@@ -54,9 +32,7 @@ authRouter.post('/logout',
 
     return next()
   },
-  (req, res) => {
-    res.status(200).json( req.body );
-  }
+  userController.logoutUser,
 );
 
 module.exports = authRouter;
