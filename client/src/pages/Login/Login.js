@@ -3,6 +3,7 @@ import { useLoginMutation } from "../../features/api/registerApiSlice.js";
 import { setCredentials } from "../../features/auth/authSlice.js";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { closeModal } from '../../features/modals/modalsSlice.js'
 
 const Login = ({ toggleForm }) => {
   const [username, setUsername] = useState("");
@@ -24,16 +25,18 @@ const Login = ({ toggleForm }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await login({user: { username, password }}).unwrap();
+      console.log("Login with:: ", { username, password });
+      const res = await login({userInfo: { username, password }}).unwrap();
+      
       dispatch(setCredentials({ ...res }));
-      navigate("/contact");
-    } catch (err) {
-      console.log("Error logging in");
-      console.error(err?.data?.message || err.error);
-    }
-    // TODO:  submission logic:
+      dispatch(closeModal({ modalId: 'loginSignupModal' }));
+      navigate("/plants");
 
-    console.log("Login with:: ", { username, password });
+    } catch (err) {
+      console.log("Error logging in:", err);
+      console.error("Detailed error: ",err?.data?.message || err.error|| "No error message provided.");
+    }
+
   };
 
   return (

@@ -1,7 +1,7 @@
 import * as React from "react";
 import { createBrowserRouter } from "react-router-dom";
 
-import NavBar from "../components/navbar/NavBar.js";
+
 
 import NotFound from "../pages/NotFound/NotFound.js";
 import Error from "../pages/NotFound/Error.js";
@@ -12,14 +12,14 @@ import Contact from "../pages/Contact/Contact.js";
 import Register from "../pages/Login/Register.js";
 
 import Plants from "../pages/Plants/Plants.js";
-
+import App from "./../App.js"
 
 import ProtectedRoute from "./ProtectedRoute.js"
 
 export const router = createBrowserRouter([
   {
     path: "/",
-    element: <NavBar />,
+    element: <App />,                     // ENTRY POINT FOR <APP>
     errorElement: <Error />,
     children: [
       { path: "*", element: <NotFound /> },
@@ -28,11 +28,8 @@ export const router = createBrowserRouter([
         element: <About />,
       },
       {
-        path: "what",
-        element: <ProtectedRoute allowedRoles ={['admin']} />,
-        children: [
-          { path: "contact", element: <Contact />}
-        ],
+        path: "contact",
+        element:  <Contact />,
       },
       {
         path: "register",
@@ -40,7 +37,11 @@ export const router = createBrowserRouter([
       },
       {
         path: "plants",
-        element: <Plants />,
+        element: (
+          <ProtectedRoute allowedRoles={['user']}>
+            <Plants />
+          </ProtectedRoute>
+        ),
       },
     ],
   },

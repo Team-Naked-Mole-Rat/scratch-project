@@ -3,16 +3,16 @@ const REGISTER_URL = "/auth";
 
 export const registerApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
-    signup: builder.mutation({
+    login: builder.mutation({
       query: (data) => ({
-        url: `${REGISTER_URL}/signup`,
+        url: `${REGISTER_URL}/login`,
         method: "POST",
         body: data,
       }),
     }),
-    login: builder.mutation({
+    signup: builder.mutation({
       query: (data) => ({
-        url: `${REGISTER_URL}/login`,
+        url: `${REGISTER_URL}/signup`,
         method: "POST",
         body: data,
       }),

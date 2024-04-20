@@ -3,7 +3,10 @@ const userPlantRouter = express.Router();
 const userController = require("../controllers/userController");
 const userPlantController = require("../controllers/userPlantController");
 
-userPlantRouter.post("/addPlant", userPlantController.createUserplant);
+userPlantRouter.post(
+  "/addPlant", 
+  userPlantController.createUserplant
+);
 
 userPlantRouter.post(
   "/updatePlant",
