@@ -3,6 +3,7 @@ const path = require("path");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
+const upload = require("./middleware/multer");
 const authJWT = require("./middleware/authJWT");
 const authRouter = require("./routers/authRouter.js");
 const apiRouter = require("./routers/apiRouter.js");
@@ -27,18 +28,27 @@ app.use(
 // Serve static files
 app.use(express.static(path.join(__dirname, "../client/public")));
 
+// Serve images
+app.use("/images", express.static(path.join(__dirname, "public")));
+
 // Server Index || Client build path
 app.use("/build", express.static(path.join(__dirname, "../client/dist")));
 
 app.use("/auth", authRouter);
 
+// Currently using /api/:username/plants on client
 app.use("/api", apiRouter);
 
 app.use("/api/user", userPlantRouter);
 
-app.get("/api/user/plants", authJWT, userPlantController.getUserPlants, (req, res) => {
-  return res.status(200).json(res.locals.plants);
-});
+app.get(
+  "/summary",
+  authJWT,
+  userPlantController.getUserPlants,
+  (req, res) => {
+    return res.status(200).json(res.locals.plants);
+  }
+);
 
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "../client/dist/index.html"));

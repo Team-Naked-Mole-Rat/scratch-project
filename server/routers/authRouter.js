@@ -2,37 +2,46 @@ const express = require("express");
 const authRouter = express.Router();
 const userController = require("../controllers/userController");
 
-authRouter.post('/login', 
+authRouter.post(
+  "/login",
   (req, res, next) => {
-    const token = req.headers['authorization'] ? req.headers['authorization'].split(' ')[1] : null;
-    console.log('::LOGIN::', req.body);
+    const token = req.headers["authorization"]
+      ? req.headers["authorization"].split(" ")[1]
+      : null;
+    console.log("::LOGIN::", req.body);
     console.log("::LOGIN BEARER::", token);
 
-    return next()
+    return next();
   },
-  userController.verifyUser, 
+  userController.verifyUser
 );
 
-authRouter.post('/signup', 
+authRouter.post(
+  "/signup",
   (req, res, next) => {
-    const token = req.headers['authorization'] ? req.headers['authorization'].split(' ')[1] : null;
-    console.log('::SIGNUP::', req.body);
+    const token = req.headers["authorization"]
+      ? req.headers["authorization"].split(" ")[1]
+      : null;
+    console.log("::SIGNUP::", req.body);
     console.log("::SIGNUP BEARER::", token);
 
-    return next()
+    return next();
   },
-  userController.signupUser,
+  userController.signupUser
 );
 
-authRouter.post('/logout', 
+authRouter.post(
+  "/logout",
   (req, res, next) => {
-    const token = req.headers['authorization'] ? req.headers['authorization'].split(' ')[1] : null;
-    console.log('::LOGOUT::', req.body)
+    const token = req.headers["authorization"]
+      ? req.headers["authorization"].split(" ")[1]
+      : null;
+    console.log("::LOGOUT::", req.body);
     console.log("::LOGOUT BEARER::", token);
 
-    return next()
+    return next();
   },
-  userController.logoutUser,
+  userController.logoutUser
 );
 
 module.exports = authRouter;
