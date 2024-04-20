@@ -1,14 +1,8 @@
-<<<<<<< HEAD
 import React, { useState } from "react";
 import PlantCard from "./PlantCard.js";
 import { useGetUserPlantsQuery } from "../../features/api/plantsApiSlice.js";
 import { openModal } from '../../features/modals/modalsSlice.js';
 import AddPlantModal from './AddPlantModal.js';
-=======
-import React, { useState, useEffect } from 'react';
-import PlantCard from './PlantCard.js';
-import { useGetUserPlantsQuery } from '../../features/api/plantsApiSlice.js';
->>>>>>> dev
 
 export default function Plants() {
   const { data, isError, isLoading } = useGetUserPlantsQuery();
