@@ -6,7 +6,7 @@ import "./../../styles/css/plantForm.css";
 
 const fileTypes = ["JPG", "PNG"];
 
-export default function AddPlantForm() {
+export default function AddPlantForm({ onClose }) {
   const [formData, setFormData] = useState({
     plantName: "",
     plantWateringInstructions: "",
@@ -46,6 +46,7 @@ export default function AddPlantForm() {
       const result = await addPlant(fileForm).unwrap();
 
       console.log('Successfully added the plant:', result);
+      onClose();
     } catch (err) {
       console.error("Error submitting form", err);
     }
