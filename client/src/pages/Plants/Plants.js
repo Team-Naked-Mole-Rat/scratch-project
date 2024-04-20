@@ -4,7 +4,7 @@ import { useGetUserPlantsQuery } from "../../features/api/plantsApiSlice.js";
 
 export default function Plants() {
   const { data, isError, isLoading } = useGetUserPlantsQuery();
-  const [plants, setPlants] = useState([
+  const [ plants, setPlants ] = useState([
     {
       username: "user a",
       plantname: "Rose",

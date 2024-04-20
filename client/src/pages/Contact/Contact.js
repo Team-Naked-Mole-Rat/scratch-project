@@ -3,8 +3,9 @@ import AddPlantForm from './../Plants/AddPlantForm.js';
 
 const Contact = () => {
   return (
-    <div>
-      <div className="main-content">Contact</div>
+    <div className="main-content">
+      <div >Contact</div>
+      <p>Hello there we are trying to see if this works</p>
       <AddPlantForm />
     </div>
   );

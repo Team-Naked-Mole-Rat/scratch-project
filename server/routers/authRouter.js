@@ -2,15 +2,58 @@ const express = require("express");
 const authRouter = express.Router();
 const userController = require("../controllers/userController");
 
-/**
- * authRouter
- * @route /auth
- */
+authRouter.post('/login', 
+  (req, res, next) => {
 
-authRouter.post("/signup", userController.signupUser);
+    console.log('LOGIN:', req.body)
+    
+    return next()
+  },
+  // userController.verifyUser, 
+  (req, res) => {
+    //to user summary page?
+    res.status(200).json(
+    {
+      "userInfo": {
+        "username": "TESTUSER",
+        "roles": ["user"]
+      },
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkFEQU1EVURBIiwicm9sZXMiOlsidXNlciJdfQ.b1CaNXB8wKDPEiyVmxKzkmqp-K0G1fKgJlzOoQvBYc4",
+    }
+  );
+  }
+);
 
-authRouter.post("/login", userController.verifyUser);
+authRouter.post('/signup', 
+  (req, res, next) => {
 
-authRouter.post("/logout", userController.logoutUser);
+    console.log('SIGNUP:', req.body)
+
+    return next()
+  },
+  // userController.signupUser, 
+  (req, res) => {
+    //to user summary page?
+    res.status(200).json({
+      "userInfo": {
+        "username": "TESTUSER",
+        "roles": ["user"]
+      },
+      "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkFEQU1EVURBIiwicm9sZXMiOlsidXNlciJdfQ.b1CaNXB8wKDPEiyVmxKzkmqp-K0G1fKgJlzOoQvBYc4",
+    });
+  }
+);
+
+authRouter.post('/logout', 
+  (req, res, next) => {
+
+    console.log('::LOGOUT::', req.body)
+
+    return next()
+  },
+  (req, res) => {
+    res.status(200).json( req.body );
+  }
+);
 
 module.exports = authRouter;

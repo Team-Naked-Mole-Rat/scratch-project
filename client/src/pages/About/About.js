@@ -47,8 +47,8 @@ const About = () => {
           </div>
 
           <div className="creator">
-            <img src={Ksenia} alt="Creator 2" className="creator-image" />
             <h3 className = "marginAbout">Ksenia Vasileva </h3>
+            <img src={Ksenia} alt="Creator 2" className="creator-image" />
             <p>Ksenia is a dedicated software developer who thrives on solving complex algorithms. When she's not immersed in code, you'll find her caring for her elegant orchids, each bloom a testament to her patience and attention to detail.</p>
           </div>
           <div className="creator">
@@ -59,8 +59,8 @@ const About = () => {
         </section>
         <section>
           <div className="creator">
-            <img src={Richard} alt="Creator 2" className="creator-image" />
             <h3 className = "marginAbout">Richard Gullo </h3>
+            <img src={Richard} alt="Creator 2" className="creator-image" />
             <p>Richard is a seasoned software developer with a passion for creating scalable and efficient systems. In his downtime, he enjoys cultivating his vibrant sunflowers, inspired by their resilience and ability to thrive in adversity..</p>
           </div>
         </section>

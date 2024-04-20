@@ -41,7 +41,7 @@ app.get("/api/user/plants", authJWT, userPlantController.getUserPlants, (req, re
 });
 
 app.get("*", (req, res) => {
-  res.sendFile("../client/dist/index.html", { root: __dirname });
+  res.sendFile(path.join(__dirname, "../client/dist/index.html"));
 });
 
 // Listening on env port

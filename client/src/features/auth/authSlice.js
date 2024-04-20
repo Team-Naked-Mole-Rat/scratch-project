@@ -1,12 +1,16 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  loading: false,
-  userInfo: localStorage.getItem("userInfo")
-    ? JSON.parse(localStorage.getItem("userInfo"))
-    : null,
-  userToken: null,
-  error: null,
+  userInfo: (() => {
+    try {
+      const userInfo = localStorage.getItem("userInfo");
+      return userInfo ? JSON.parse(userInfo) : null;
+    } catch (e) {
+      console.log('Error parsing userInfo:', e);
+      return null;
+    }
+    
+    })(),
   success: false,
 };
 
@@ -15,12 +19,20 @@ const authSlice = createSlice({
   initialState,
   reducers: {
     setCredentials: (state, action) => {
-      state.userInfo = action.payload;
-      localStorage.setItem("userInfo", JSON.stringify(action.payload));
+      const { userInfo, token } = action.payload;
+
+      state.userInfo = userInfo;
+      state.success = true;
+
+      if( token ){
+        localStorage.setItem("token", token);
+      }
+
     },
     clearCredentials: (state, action) => {
       state.userInfo = null;
-      localStorage.removeItem("userInfo");
+      localStorage.removeItem("token");
+      state.success = false;
     },
   },
 });
