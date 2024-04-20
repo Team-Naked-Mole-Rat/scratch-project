@@ -1,22 +1,31 @@
+// plant_instructions in reminder will become imagefilename
+// https://stackoverflow.com/questions/22288898/insert-an-image-in-postgresql-database
+// OR mongo
+
 const express = require('express');
 const apiRouter = express.Router();
 const plantApiController = require('./../controllers/plantApiController.js');
+const userPlantController = require('./../controllers/userPlantController.js');
 const authJWT = require('../middleware/authJWT');
 
 apiRouter.post(
   '/',
   plantApiController.getPlantData,
+  userPlantController.createUserplant, 
   //plantApiController.databaseSave,
   (req, res, next) => {
-    console.log('res')
-    console.log(res.locals.response)
     res.status(200).json(plant);
   }
 );
 
 apiRouter.get('/:username/plants',
   ( req, res, next ) => {
+
+    const token = req.headers['authorization'] ? req.headers['authorization'].split(' ')[1] : null;
+
     console.log("::getUserPlants::", req.params);
+    console.log("::getUserPlants BEARER::", token);
+
     return next();
   },
   ( req, res ) => {
@@ -91,8 +100,13 @@ addPlant OBJECT EXAMPLE:
 
 apiRouter.post('/:username/addPlant',
   ( req, res, next ) => {
+
+    const token = req.headers['authorization'] ? req.headers['authorization'].split(' ')[1] : null;
+
     console.log("::addPlant::", req.params);
-    console.log("::addPlant::", req.body)
+    console.log("::addPlant::", req.body);
+    console.log("::addPlant BEARER::", token);
+
     return next();
   },
   ( req, res ) => {
@@ -157,8 +171,13 @@ editPlant OBJECT EXAMPLE:
 */
 apiRouter.post('/:username/editPlant',
   ( req, res, next ) => {
+
+    const token = req.headers['authorization'] ? req.headers['authorization'].split(' ')[1] : null;
+
     console.log("::editPlant::", req.params);
-    console.log("::editPlant::", req.body)
+    console.log("::editPlant::", req.body);
+    console.log("::editPlant BEARER::", token);
+
     return next();
   },
   ( req, res ) => {
@@ -214,8 +233,13 @@ DELETE /api/user123/plants/12345
 
 apiRouter.post('/:username/deletePlant',
   ( req, res, next ) => {
-    console.log("::editPlant::", req.params);
-    console.log("::editPlant::", req.body)
+
+    const token = req.headers['authorization'] ? req.headers['authorization'].split(' ')[1] : null;
+
+    console.log("::deletePlant::", req.params);
+    console.log("::deletePlant::", req.body);
+    console.log("::deletePlant BEARER::", token);
+
     return next();
   },
   ( req, res ) => {
