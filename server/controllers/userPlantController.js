@@ -138,4 +138,19 @@ userPlantController.getUserPlants = async (req, res, next) => {
   }
 };
 
+
+userPlantController.editPlant = async (req, res, next) => {
+
+
+}
+
+
+
+userPlantController.deletePlant = async (req, res, next) => {
+
+
+}
+
+
+
 module.exports = userPlantController;

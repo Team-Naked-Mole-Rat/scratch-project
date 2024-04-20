@@ -8,6 +8,7 @@ const plantApiController = require("./../controllers/plantApiController.js");
 const userPlantController = require("./../controllers/userPlantController.js");
 const authJWT = require("../middleware/authJWT");
 const upload = require("../middleware/multer");
+const multer = require('multer');
 
 apiRouter.post(
   "/",
@@ -64,22 +65,23 @@ apiRouter.post(
 
     return next();
   },
+  upload.single('imageData'), 
+  (req, res, next ) => {
+    console.log('Received data for user:', req.params.username);
+    console.log('Form fields:', req.body);
+    if (req.file) {
+        console.log('Uploaded file:', req.file);
+    }
+    return next();
+  },
   (req, res) => {
     return res.status(200).json({
       success: true,
       message: "Plant added successfully",
-      plant: {
-        username: "user123",
-        plantname: "Lavender",
-        plant_status: "healthy",
-        plant_instruction: "Needs full sun",
-        plant_reminder: "water every week",
-        fav_flag: true,
-      },
+      plant: req.body
     });
   }
 );
-
 /*
 addPlant EXAMPLE SUCCESS:
 

@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   loginSignupModal: {isOpen: false},
+  addPlantModal: {isOpen: false},
 };
 
 const modalsSlice = createSlice({

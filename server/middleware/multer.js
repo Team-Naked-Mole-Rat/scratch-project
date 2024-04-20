@@ -9,11 +9,18 @@ const storage = multer.diskStorage({
   filename: function (req, file, cb) {
     const randomString = crypto.randomBytes(10).toString("hex");
     const filename = `${randomString}_${file.originalname}`;
-    // File can accessed on req.file
     cb(null, filename);
   },
 });
 
-const upload = multer({ storage });
+const fileFilter = (req, file, cb) => {
+  if (file.fieldname === "imageData") {
+    cb(null, true);
+  } else {
+    cb(new Error('MulterError: Unexpected field'), false);
+  }
+};
+
+const upload = multer({ storage, fileFilter });
 
 module.exports = upload;

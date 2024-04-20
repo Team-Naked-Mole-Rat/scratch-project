@@ -56,7 +56,7 @@ function NavBar() {
             </NavLink>
           </li>
 
-            <li>
+            {/* <li>
               <NavLink
                 to="contact"
                 className={({ isActive }) =>
@@ -65,7 +65,7 @@ function NavBar() {
               >
                 Contact
               </NavLink>
-            </li>
+            </li> */}
 
           {/* <li>
             <NavLink
