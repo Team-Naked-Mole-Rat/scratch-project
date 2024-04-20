@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import './../../styles/css/about.css';
+
 
 export default function NotFound() {
   const navigate = useNavigate();
@@ -21,9 +23,12 @@ export default function NotFound() {
 
   return (
     <div id="not-found-page" className = "main-content">
-      <h1>404 - Page Not Found</h1>
-      <h2>The page you are looking for does not exist.</h2>
-      <h2>You will be redirected to the homepage in {countdown} seconds...</h2>
+      <div className="homepage-container">
+      <h1 className="fourOhfour">404: Page Not Found</h1>
+     
+      
+      <h2 className="fourOhfourb"><span id="content1">The page you are looking for does not exist.</span><span id="content2">You will be redirected to the homepage in<span className = "fourOhfourc">{countdown} </span> seconds...</span></h2>
+    </div>
     </div>
   );
 }
