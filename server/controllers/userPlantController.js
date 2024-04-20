@@ -10,6 +10,7 @@ userPlantController.createUserplant = async(req, res, next) => {
    console.log(name)
    console.log(attentionNeeded)
    console.log(condition)
+
    if(attentionNeeded==='No'){
     plant_status='healthy'
    }
@@ -127,5 +128,20 @@ userPlantController.getUserPlants = async (req, res, next) => {
     return res.status(500).json({ error: "userControllerverifyUser error" });
   }
 };
+
+
+userPlantController.editPlant = async (req, res, next) => {
+
+
+}
+
+
+
+userPlantController.deletePlant = async (req, res, next) => {
+
+
+}
+
+
 
 module.exports = userPlantController;

@@ -34,11 +34,14 @@ app.use("/auth", authRouter);
 
 app.use("/api", apiRouter);
 
-app.use("/api/user", userPlantRouter);
-
-app.get("/api/user/plants", authJWT, userPlantController.getUserPlants, (req, res) => {
-  return res.status(200).json(res.locals.plants);
-});
+// app.use("/api/user", userPlantRouter);
+// app.get("/api/user/plants", 
+//   authJWT, 
+//   userPlantController.getUserPlants, 
+//   (req, res) => {
+//     return res.status(200).json(res.locals.plants);
+//   }
+// );
 
 app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "../client/dist/index.html"));
