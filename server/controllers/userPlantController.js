@@ -6,7 +6,8 @@ const userPlantController ={};
 userPlantController.createUserplant = async(req, res, next) => {
    const imagePath = '../Cyclamen-sick.jpg';
    console.log('start')
-   const {username, name, attentionNeeded, condition} = req.body;
+   const {username} = req.body;
+   const {name, attentionNeeded, condition} = res.locals.plant;
    console.log(username)
    console.log(name)
    console.log(attentionNeeded)

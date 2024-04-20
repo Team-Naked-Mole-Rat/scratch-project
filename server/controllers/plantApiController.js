@@ -8,9 +8,10 @@ const parsePlantRawdata = require('../middleware/parsePlantRawData');
 const doctorRat = require('../models/assesmentsModel.js');
 const plantApiController = {};
 
-const imagePath = 'sickplant.jpg';
+const imagePath = 'testlily.jpg';
 
 plantApiController.getPlantData = async (req, res, next) => {
+  const {username} = req.body;
   const data = new FormData();
   data.append('plant_img', fs.createReadStream(imagePath));
 
@@ -29,15 +30,17 @@ plantApiController.getPlantData = async (req, res, next) => {
     const response = await axios.request(options);
     console.log('response', response.data);
     rawdata = response.data;
-    plant = parsePlantRawdata(rawdata);
+    plant = parsePlantRawdata(rawdata);  
     console.log(`plant is: ${JSON.stringify(plant)}`)  
+    res.locals.plant = plant;
+    return next();
+ 
     //res.locals.response = response.data;
-    res.locals.response = plant;
+    //res.locals.response = res;
   } catch (error) {
     console.error('error', error);
   }
 
-  return next();
 };
 
 plantApiController.databaseSave = async (req, res, next) => {
