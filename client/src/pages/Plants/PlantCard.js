@@ -1,21 +1,37 @@
-import React from "react";
+import React, { useEffect} from "react";
+import { useSelector } from 'react-redux';
+import { plantsSelectors } from '../../features/plants/plantsSlice.js';
+import '../../styles/css/public_PlantCard.css'
 
-const PlantCard = ({ plant }) => {
-  console.log("plant: ", plant);
+const PlantCard = ({ plant, username, onDelete }) => {
+  const visibilityState = useSelector(state => state.plants.visibilityPlantIds[plant.plantid] || 'normal');
+
+  useEffect(() => {
+    console.log(`Visibility State Changed for ${plant.plantid}: ${visibilityState}`);
+  }, [visibilityState]);
+
+  const visibilityClass =  {
+    'normal' : '',
+    'optimisticOpacity' : 'opacity-50 transition-opacity duration-2000 ease-in-out',
+    'optimisticDelete' : 'opacity-0 transition-opacity duration-2000 ease-in-out'
+  }[visibilityState];
+
+  if (visibilityState === 'optimisticDelete') {
+    return null; 
+  }
+
   return (
-    <div className="bg-white/90 max-w-md mx-auto rounded overflow-hidden shadow-md m-4">
-      <img
-        className="w-full h-64 object-cover"
-        src={plant.plant_filename ? `http://localhost:3000/images/${plant.plant_filename}` : "http://localhost:3000/images/defaultimg.png"}
-        alt={plant.plantname}
-      />
-      <div className="px-6 py-4">
-        <div
-          className={`font-bold text-xl mb-2 ${
-            plant.fav_flag ? "text-yellow-300" : "text-gray-700"
-          }`}
-        >
-          {plant.plantname}
+    <div className={`plant-card ${visibilityClass}`}>
+      <button onClick={() => onDelete(plant.username, plant.plantid)}>X</button>
+      <div className="image-container">
+          <img
+              src={plant.plant_filename ? `http://localhost:3000/images/${plant.plant_filename}` : "http://localhost:3000/images/defaultimg.png"}
+              alt={plant.plantname}
+          />
+      </div>
+      <div>
+        <div className="text-xl">
+            {plant.plantname}
         </div>
         <p className="text-gray-700">Status: {plant.plant_status}</p>
         <p className="text-gray-700">Next water: {plant.plant_reminder}</p>

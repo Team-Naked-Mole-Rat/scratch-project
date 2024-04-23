@@ -1,35 +1,55 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, createEntityAdapter  } from "@reduxjs/toolkit";
 
-const initialState = {
-  userInfo: null,
-  plantList: [],
-};
+const plantsAdapter = createEntityAdapter({
+  selectId: (plant) => plant.plantid,
+  sortComparer: (a, b) => b.plantid.localeCompare(a.plantid),
+});
+
+const initialState = plantsAdapter.getInitialState({
+  visibilityPlantIds: {},
+});
 
 const plantsSlice = createSlice({
   name: "plants",
   initialState,
   reducers: {
-    addPlant: (state, action) => {
-      // const { name, newPlant } = action.payload;
-      state.plantList.push(action.payload);
+    plantAdded: plantsAdapter.addOne,
+    plantUpdated: plantsAdapter.updateOne,
+    plantRemoved: plantsAdapter.removeOne,
+    visibility_setOptimisticOpacity: (state, action) => {
+      const { plantId } = action.payload;
+      console.log(`Setting optimistic opacity for plant ${plantId}`);
+      state.visibilityPlantIds[plantId] = 'optimisticOpacity';
     },
-    editPlant: (state, action) => {
-      const { name, updatedPlant } = action.payload;
-      const index = state.plantList.findIndex((plant) => plant.name === name);
-      // If plant exists
-      if (index !== -1) {
-        state.plantList[index] = updatedPlant;
-      }
+    visibility_setOptimisticDelete: (state, action) => {
+      const { plantId } = action.payload;
+      console.log(`Setting optimistic delete for plant ${plantId}`);
+      state.visibilityPlantIds[plantId] = 'optimisticDelete';
     },
-    deletePlant: (state, action) => {
-      // Payload is a string
-      state.plantList = state.plantList.filter(
-        (plant) => plant.name !== action.payload
-      );
+    visibility_initialize: (state, action) => {
+      const plantIds = Array.isArray(action.payload) ? action.payload : [action.payload];
+      plantIds.forEach(plantId => {
+        state.visibilityPlantIds[plantId] = 'normal';
+      });
     },
-  },
+    visibility_setNormal: (state, action) => {
+      const { plantId } = action.payload;
+      console.log(`Setting optimistic delete for plant ${plantId}`);
+      state.visibilityPlantIds[plantId] = 'normal';
+    },
+  }
 });
 
-export const { addPlant, editPlant, deletePlant } = plantsSlice.actions;
+export const plantsSelectors = plantsAdapter.getSelectors(state => state.plants);
+
+export const { 
+  plantAdded,
+  plantUpdated,
+  plantRemoved,
+  visibility_setOptimisticOpacity,
+  visibility_setOptimisticDelete,
+  visibility_initialize,
+  visibility_setNormal
+} = plantsSlice.actions;
 
 export default plantsSlice.reducer;

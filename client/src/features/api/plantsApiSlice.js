@@ -3,53 +3,40 @@ import { apiSlice } from "./apiSlice.js";
 export const plantsApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     getUserPlants: builder.query({
-
-      queryFn: (arg, queryApi, extraOptions, baseQuery) => {
-        const username = queryApi.getState().auth.userInfo?.username;
+      queryFn: (username, api, extraOptions, baseQuery) => {
+        console.log('API called for username:', username);
         if (!username) {
-          return { error: { status: 'CUSTOM_ERROR', error: 'Username not found in the state.' } };
+            return { error: { status: 'CUSTOM_ERROR', error: 'Username not found in the state.' } };
         }
         const url = `/api/${username}/plants`;
         return baseQuery({ url, method: 'GET' });
-      }
+    },
+      providesTags: ['Plants'],
 
     }),
 
-    addPlant: builder.mutation({
-
-      queryFn: (data, queryApi, extraOptions, baseQuery) => {
-        const username = queryApi.getState().auth.userInfo?.username;
-        if (!username) {
-          return { error: { status: 'CUSTOM_ERROR', error: 'Username not found in the state.' } };
-        }
-        const url = `/api/${username}/addPlant`;
-        return baseQuery({ url, method: 'POST', body: data });
-      }
-
+    addPlant:  builder.mutation({
+      query: ({ username, data }) => ({
+        url: `/api/${username}/addPlant`,
+        method: 'POST',
+        body: data,
+      }),
+      invalidatesTags: ['Plants'],
     }),
     editPlant: builder.mutation({
-
-      queryFn: (data, queryApi, extraOptions, baseQuery) => {
-        const username = queryApi.getState().auth.userInfo?.username;
-        if (!username) {
-          return { error: { status: 'CUSTOM_ERROR', error: 'Username not found in the state.' } };
-        }
-        const url = `/api/${username}/updatePlant`;
-        return baseQuery({ url, method: 'POST', body: data });
-      }
-
+      query: ({ username, plantId, data }) => ({
+        url: `/api/${username}/updatePlant/${plantId}`,
+        method: 'POST',
+        body: data,
+      }),
+      invalidatesTags: ['Plants'],
     }),
     deletePlant: builder.mutation({
-
-      queryFn: (data, queryApi, extraOptions, baseQuery) => {
-        const username = queryApi.getState().auth.userInfo?.username;
-        if (!username) {
-          return { error: { status: 'CUSTOM_ERROR', error: 'Username not found in the state.' } };
-        }
-        const url = `/api/${username}/deletePlant`;
-        return baseQuery({ url, method: 'DELETE', body: data });
-      }
-
+      query: ({ username, plantId }) => ({
+        url: `/api/${username}/deletePlant/${plantId}`,
+        method: 'DELETE',
+      }),
+      invalidatesTags: ['Plants'],
     }),
   }),
 });

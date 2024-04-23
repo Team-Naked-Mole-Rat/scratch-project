@@ -1,20 +1,62 @@
-import React, { useState } from "react";
-import PlantCard from "./PlantCard.js";
-import { useGetUserPlantsQuery } from "../../features/api/plantsApiSlice.js";
-import { openModal } from "../../features/modals/modalsSlice.js";
-import AddPlantModal from "./AddPlantModal.js";
-import "./../../styles/css/add-plant-button.css";
+import React, { useEffect } from 'react';
+import PlantCard from './PlantCard.js';
+import { useSelector, useDispatch } from 'react-redux';
+import { useGetUserPlantsQuery, useDeletePlantMutation } from '../../features/api/plantsApiSlice.js';
+import { openModal, closeModal } from '../../features/modals/modalsSlice.js';
+import AddPlantModal from './AddPlantModal.js';
+import './../../styles/css/add-plant-button.css';
+import { 
+  plantsSelectors, 
+  plantRemoved,
+  visibility_initialize,  
+  visibility_setOptimisticOpacity,  
+  visibility_setOptimisticDelete,
+  visibility_setNormal  
+} from '../../features/plants/plantsSlice.js';
 
-export default function Plants() {
-  const { data, isError, isLoading, refetch } = useGetUserPlantsQuery();
-  const [showAddPlantModal, setShowAddPlantModal] = useState(false);
+
+export default function Plants() { 
+  const username = useSelector(state => state.auth.userInfo.username);
+
+  const { data, isLoading, isError, refetch } = useGetUserPlantsQuery(username);
+  
+  const [deletePlant] = useDeletePlantMutation();
+  const deletingPlantIds = useSelector(state => state.plants.deletingPlantIds);
+  const dispatch = useDispatch();
+  const showModal = useSelector(state => state.modals.addPlantModal.isOpen);
+
+  useEffect(() => {
+    if (data?.plants) {
+      const plantIds = data.plants.map(plant => plant.plantid);
+      dispatch(visibility_initialize(plantIds));
+    }
+  }, [dispatch, data]);
+
+
+  const handleDelete = async (username, plantId) => {
+    dispatch(visibility_setOptimisticOpacity({ plantId }));
+    setTimeout(() => {
+      dispatch(visibility_setOptimisticDelete({ plantId }));
+      setTimeout(async () => {
+        
+        await refetch();
+        
+        const plantStillExists = data?.plants.some(plant => plant.plantid === plantId);
+        if (plantStillExists) {
+          dispatch(visibility_setNormal({ plantId })); 
+        } else {
+          dispatch(plantRemoved({ plantId })); 
+        }
+      }, 4000); 
+    }, 2000); 
+};
 
   const handleOpenModal = () => {
-    setShowAddPlantModal(true);
+    dispatch(openModal({ modalId: 'addPlantModal' }));
   };
 
   const handleCloseModal = () => {
-    setShowAddPlantModal(false);
+    dispatch(closeModal({ modalId: 'addPlantModal' }));
   };
 
   // if (isError) {
@@ -30,8 +72,7 @@ export default function Plants() {
   };
 
   return (
-    // <div className="main-content">
-    // <div className="grid place-content-center">
+
     <div>
       <h1 className="text-3xl font-bold text-center my-8">My Plants</h1>
       <div className="flex justify-center">
@@ -42,11 +83,16 @@ export default function Plants() {
       </div>
 
       <div className="flex flex-wrap justify-center mx-20 border-t border-green-600 pt-10">
-        {data?.plants.map((plant, index) => (
-          <PlantCard key={index} plant={plant} />
+        {data?.plants.slice().reverse().map((plant, index) => (
+          <PlantCard 
+            key={index} 
+            plant={plant} 
+            username={username} 
+            onDelete={handleDelete} 
+          />
         ))}
       </div>
-      <AddPlantModal isOpen={showAddPlantModal} onClose={handleCloseModal} onAddPlant={handleAddPlant} />
+      <AddPlantModal isOpen={showModal} onClose={handleCloseModal} />
     </div>
   );
 }

@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
 import { FileUploader } from "react-drag-drop-files";
 import {
   useAddPlantMutation,
@@ -11,7 +10,7 @@ const fileTypes = ["JPG", "PNG"];
 
 export default function AddPlantForm({ onClose }) {
   const { data, isError, isLoading } = useGetUserPlantsQuery;
-  const [formData, setFormData] = useState({
+  const [ formData, setFormData ] = useState({
     plantName: "",
     plantWateringInstructions: "",
     plantFertilizeInstructions: "",
@@ -37,22 +36,23 @@ export default function AddPlantForm({ onClose }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      const fileForm = new FormData();
-      fileForm.append("imageData", imageData);
-      fileForm.append("plantName", formData.plantName);
-      fileForm.append(
-        "plantWateringInstructions",
-        formData.plantWateringInstructions
-      );
-      fileForm.append(
-        "plantFertilizeInstructions",
-        formData.plantFertilizeInstructions
-      );
-      fileForm.append("plantSunlight", formData.plantSunlight);
-      fileForm.append("plantLocation", formData.plantLocation);
-      fileForm.append("plantFavFlag", formData.plantFavFlag);
 
+    const fileForm = new FormData();
+    fileForm.append("imageData", imageData);
+    fileForm.append("plantName", formData.plantName);
+    fileForm.append(
+      "plantWateringInstructions",
+      formData.plantWateringInstructions
+    );
+    fileForm.append(
+      "plantFertilizeInstructions",
+      formData.plantFertilizeInstructions
+    );
+    fileForm.append("plantSunlight", formData.plantSunlight);
+    fileForm.append("plantLocation", formData.plantLocation);
+    fileForm.append("plantFavFlag", formData.plantFavFlag);
+
+    try {
       const result = await addPlant(fileForm).unwrap();
 
       console.log("Successfully added the plant:", result);
