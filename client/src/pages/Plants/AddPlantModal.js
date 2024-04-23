@@ -4,26 +4,24 @@ import Modal from "../../components/visual/Modal.js";
 import AddPlantForm from "./AddPlantForm.js";
 import { closeModal } from "../../features/modals/modalsSlice.js";
 
-function AddPlantModal({ isOpen, onClose, onAddPlant }) {
+function AddPlantModal({ isOpen, onAddPlant }) {
   const dispatch = useDispatch();
   const modalId = "addPlantModal";
 
   const handleClose = () => {
-    dispatch(closeModal(modalId));
+    dispatch(closeModal({ modalId: 'addPlantModal' }));
+  };
+
+  const handleSubmitSuccess = () => {
+    handleClose();
     onAddPlant();
-    onClose();
   };
 
   return (
     <Modal isOpen={isOpen} onClose={handleClose}>
-      <AddPlantForm onClose={handleClose} />
+      <AddPlantForm onClose={handleSubmitSuccess} />
     </Modal>
   );
 }
 
 export default AddPlantModal;
-
-export function handleOpenAddPlantModal() {
-  const dispatch = useDispatch();
-  dispatch(openModal({ modalId: "addPlantModal" }));
-}

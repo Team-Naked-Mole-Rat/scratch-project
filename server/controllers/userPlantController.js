@@ -118,11 +118,24 @@ userPlantController.getUserPlants = async (req, res, next) => {
   const { username } = req.params
   console.log(`username is ${username}`);
   try {
-    const text = `select username, plantname, plant_status, plant_filename, plant_instruction, fav_flag from users a, plants b, user_plant c, plant_instructions d
-    where a._id = c.user_id
-    and b._id = c.plant_id
-    and c._id = d.upid
-    and username = $1`;
+    const text = `SELECT 
+                      a.username, 
+                      b.plantname, 
+                      b._id AS plantId, 
+                      d.plant_status, 
+                      d.plant_filename, 
+                      d.plant_instruction, 
+                      d.fav_flag 
+                  FROM 
+                      users a, 
+                      plants b, 
+                      user_plant c, 
+                      plant_instructions d
+                  WHERE 
+                      a._id = c.user_id
+                      AND b._id = c.plant_id
+                      AND c._id = d.upid
+                      AND a.username = $1;`;
     const params = [username];
     const result = await db.query(text, params);
     //if can't find user, send status(400)

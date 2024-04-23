@@ -186,8 +186,8 @@ DELETE /api/user123/plants/12345
 "plantId"
 */
 
-apiRouter.post(
-  "/:username/deletePlant",
+apiRouter.delete(
+  "/:username/deletePlant/:plantId",
   (req, res, next) => {
     const token = req.headers["authorization"]
       ? req.headers["authorization"].split(" ")[1]
@@ -200,18 +200,14 @@ apiRouter.post(
     return next();
   },
   (req, res) => {
-    return res.status(200).json({
-      success: true,
-      message: "Plant added successfully",
-      plant: {
-        username: "user123",
-        plantname: "Lavender",
-        plant_status: "healthy",
-        plant_instruction: "Needs full sun",
-        plant_reminder: "water every week",
-        fav_flag: true,
-      },
-    });
+    return res.status(404).json(
+    //   {
+    //   success: true,
+    //   message: "Plant deleted successfully",
+    //   plantId: req.params.plantId,
+    //   plantOwner: req.params.username
+    // }
+  );
   }
 );
 
