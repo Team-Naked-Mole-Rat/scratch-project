@@ -1,4 +1,6 @@
-import { apiSlice } from "./apiSlice.js";
+import { apiSlice } from "./http_apiSlice.js";
+const URL_API = "Plant";
+
 
 export const plantsApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
@@ -14,18 +16,17 @@ export const plantsApiSlice = apiSlice.injectEndpoints({
       providesTags: ['Plants'],
 
     }),
-
-    addPlant:  builder.mutation({
-      query: ({ username, data }) => ({
-        url: `/api/${username}/addPlant`,
-        method: 'POST',
-        body: data,
-      }),
+    addPlant: builder.mutation({
+      queryFn: (data, queryApi, extraOptions, baseQuery) => {
+        const username = queryApi.getState().auth.userInfo?.username;
+        const url = `/api/${username}/add${Plant}`;
+        return baseQuery({ url, method: 'POST', body: data });
+      },
       invalidatesTags: ['Plants'],
     }),
     editPlant: builder.mutation({
       query: ({ username, plantId, data }) => ({
-        url: `/api/${username}/updatePlant/${plantId}`,
+        url: `/api/${username}/update${Plant}/${plantId}`,
         method: 'POST',
         body: data,
       }),
@@ -33,7 +34,7 @@ export const plantsApiSlice = apiSlice.injectEndpoints({
     }),
     deletePlant: builder.mutation({
       query: ({ username, plantId }) => ({
-        url: `/api/${username}/deletePlant/${plantId}`,
+        url: `/api/${username}/delete${Plant}/${plantId}`,
         method: 'DELETE',
       }),
       invalidatesTags: ['Plants'],

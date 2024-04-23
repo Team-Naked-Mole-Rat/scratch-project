@@ -3,7 +3,7 @@ import { FileUploader } from "react-drag-drop-files";
 import {
   useAddPlantMutation,
   useGetUserPlantsQuery,
-} from "../../features/api/plantsApiSlice.js";
+} from "../../features/api/http_plantsApiSlice.js";
 import "./../../styles/css/plantForm.css";
 
 const fileTypes = ["JPG", "PNG"];
@@ -32,10 +32,13 @@ export default function AddPlantForm({ onClose }) {
 
   const handleFileChange = (imageData) => {
     setImageData(imageData);
+    console.log("File selected:", imageData); 
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    console.log("File data before form submission:", imageData);
 
     const fileForm = new FormData();
     fileForm.append("imageData", imageData);
@@ -52,6 +55,8 @@ export default function AddPlantForm({ onClose }) {
     fileForm.append("plantLocation", formData.plantLocation);
     fileForm.append("plantFavFlag", formData.plantFavFlag);
 
+    console.log("FormData contents:", Object.fromEntries(fileForm.entries()));
+
     try {
       const result = await addPlant(fileForm).unwrap();
 
@@ -59,6 +64,7 @@ export default function AddPlantForm({ onClose }) {
       onClose();
     } catch (err) {
       console.error("Error submitting form", err);
+      console.log("Error details:", err.response?.data || err.message);
     }
   };
   return (

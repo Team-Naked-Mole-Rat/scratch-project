@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useSignupMutation } from "../../features/api/registerApiSlice.js";
+import { useSignupMutation } from "../../features/api/http_registerSlice.js";
 import { setCredentials } from "../../features/auth/authSlice.js";
 import { useNavigate } from "react-router-dom";
 import { closeModal } from '../../features/modals/modalsSlice.js'

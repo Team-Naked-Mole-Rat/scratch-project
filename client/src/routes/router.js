@@ -27,10 +27,14 @@ export const router = createBrowserRouter([
         index: true,
         element: <About />,
       },
-      // {
-      //   path: "contact",
-      //   element:  <Contact />,
-      // },
+      {
+        path: "contact",
+        element: (
+          <ProtectedRoute allowedRoles={['user']}>
+            <Contact />
+          </ProtectedRoute>
+        ), 
+      },
       {
         path: "register",
         element: <Register />,
