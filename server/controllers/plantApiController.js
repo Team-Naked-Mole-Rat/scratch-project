@@ -10,6 +10,9 @@ const plantApiController = {};
 
 plantApiController.getPlantData = async (req, res, next) => {
   const { username } = req.body;
+    if (!req.file) {
+    return res.status(400).json({ error: 'No file uploaded.' });
+  }
   const { filename } = req.file;
 
   const data = new FormData();

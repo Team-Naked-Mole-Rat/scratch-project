@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import PlantCard from './PlantCard.js';
 import { useSelector, useDispatch } from 'react-redux';
-import { useGetUserPlantsQuery, useDeletePlantMutation } from '../../features/api/plantsApiSlice.js';
+import { useGetUserPlantsQuery, useDeletePlantMutation } from '../../features/api/http_plantsApiSlice.js';
 import { openModal, closeModal } from '../../features/modals/modalsSlice.js';
 import AddPlantModal from './AddPlantModal.js';
 import './../../styles/css/add-plant-button.css';
