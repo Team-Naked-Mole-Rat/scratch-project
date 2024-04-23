@@ -1,0 +1,71 @@
+
+.plant-card {
+  border: 1px solid #ccc;
+  padding: 8px;
+  margin: 4px;
+  border-radius: 4px;
+  background-color: white;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+  width: 400px;
+  overflow: hidden;
+  position: relative;
+}
+
+.image-container {
+  width: 100%;
+  height: 250px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+}
+
+.plant-card img {
+  width: auto;
+  height: 100%;
+  max-width: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.plant-card button {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 0;
+  border-radius: 15px;
+  cursor: pointer;
+  font-size: 16px;
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background-color 0.3s;
+}
+
+.plant-card button:hover {
+  background-color: #367C39;
+}
+
+.text-xl {
+  font-size: 1rem;
+  margin-top: 5px;
+}
+
+.text-gray-700 {
+  color: #4a5568;
+  font-size: 0.8rem;
+}
+
+.opacity-50 {
+  opacity: 0.5;
+}
+
+.transition-opacity {
+  transition: opacity 2s ease-in-out;
+}

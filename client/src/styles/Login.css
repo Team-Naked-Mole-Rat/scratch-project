@@ -1,0 +1,57 @@
+body {
+  background: url('../../public/assets/images/background.jpg');
+  background-size: cover;
+  color: #083b13;
+}
+
+.title {
+  font-size: 40px;
+  text-align: center;
+  margin-bottom: 100px;
+}
+h2 {
+  margin-top: 0;
+}
+.main-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card {
+  width: 300px;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px #083b13;
+  padding: 20px;
+}
+
+.form {
+  margin-bottom: 15px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  background-color: #083b13;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #083b13da;
+}
